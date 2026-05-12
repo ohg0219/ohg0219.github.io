@@ -3,6 +3,9 @@ title: "ConfigMap 과 Secret — 설정과 비밀을 이미지에서 분리 — 
 date: 2026-05-12 21:33:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, configmap, secret, env, volume-mount]
+image:
+  path: /assets/img/posts/k8s-configmap-secret/cover.png
+  alt: Kubernetes Pod 에 ConfigMap 과 Secret 이 설정과 비밀 값으로 주입되는 모습을 표현한 기술 커버 이미지
 mermaid: true
 series:
   name: kubernetes
@@ -13,9 +16,11 @@ series:
 
 > **DB 접속 정보를 이미지에 넣어서 빌드했는데, 스테이징과 운영이 같은 DB 를 보고 있었습니다.**
 
-Docker 를 쓸 때도 마찬가지였습니다. 설정값을 이미지 안에 하드코딩하면, 환경이 바뀔 때마다 이미지를 다시 빌드해야 합니다. Docker 에서는 `-e` 옵션이나 `.env` 파일로 환경 변수를 주입했습니다. K8s 에서는 이 역할을 **ConfigMap** 과 **Secret** 이 합니다.
+Docker 를 쓸 때도 마찬가지였습니다. 설정값을 이미지 안에 하드코딩하면, 환경이 바뀔 때마다 이미지를 다시 빌드해야 합니다. Docker 에서는 `-e` 옵션이나 `.env` 파일로 환경 변수를 주입했습니다.
 
-이번 편은 설정과 비밀을 이미지에서 분리하는 두 가지 도구, 그리고 "Secret 이 정말 안전한가?" 에 대한 솔직한 이야기입니다.
+K8s 에서는 이 역할을 **ConfigMap** 과 **Secret** 이 합니다.
+
+이번 편은 설정과 비밀을 이미지에서 분리하는 두 가지 도구, 그리고 "Secret 이 정말 안전한가?" 에 대한 현실적인 기준을 정리합니다.
 
 ## 왜 설정을 이미지에서 분리해야 하나
 
@@ -331,7 +336,7 @@ ConfigMap 이나 Secret 이름이 잘못되면 Pod 가 `CreateContainerConfigErr
 
 > **이미지는 하나, 설정은 ConfigMap 에, 비밀은 Secret 에 — 다만 Secret 의 "비밀" 은 기본 상태에서 그리 단단하지 않다.**
 
-Docker 에서 `-e` 와 `.env` 로 하던 것이 K8s 에서는 ConfigMap 과 Secret 으로 체계화됩니다. 비밀 관리는 K8s 기본 기능만으로는 부족하고, 운영에서는 Vault 같은 외부 도구와 조합하는 것이 일반적입니다.
+Docker 에서 `-e` 와 `.env` 로 하던 일이 K8s 에서는 ConfigMap 과 Secret 으로 체계화됩니다. 다만 비밀 관리는 K8s 기본 기능만으로는 부족합니다. 운영에서는 Vault 같은 외부 도구와 조합하는 것이 일반적입니다.
 
 다음 편에서는 **데이터 영속화** 를 다룹니다. 컨테이너가 죽어도 살아남아야 하는 데이터를 어떻게 관리하는가 — Volume, PersistentVolume, PersistentVolumeClaim. Docker 시리즈 4편에서 다뤘던 볼륨의 K8s 버전입니다.
 

@@ -3,6 +3,9 @@ title: "첫 클러스터와 Pod — 가장 작은 단위부터 — 시리즈 2�
 date: 2026-05-12 19:07:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, pod, kubectl, minikube]
+image:
+  path: /assets/img/posts/k8s-pod-basics/cover.png
+  alt: Kubernetes 클러스터 안에서 Pod 가 가장 작은 배포 단위로 실행되는 모습을 표현한 기술 커버 이미지
 mermaid: true
 series:
   name: kubernetes
@@ -13,7 +16,9 @@ series:
 
 > **컨테이너가 K8s 의 최소 단위라고 생각했는데, 아니었습니다.**
 
-Docker 에서는 컨테이너 하나가 실행의 단위였습니다. `docker run` 하나로 프로세스 하나가 뜨고, 그게 전부였습니다. K8s 로 넘어오면 최소 단위가 컨테이너가 아니라 **Pod** 입니다. 컨테이너를 한 겹 더 감싼 이 단위가 왜 필요한지, 그리고 그 Pod 를 띄우려면 먼저 클러스터가 있어야 하니 — 로컬에 클러스터부터 하나 만들어 보겠습니다.
+Docker 에서는 컨테이너 하나가 실행의 단위였습니다. `docker run` 하나로 프로세스 하나가 뜨고, 그게 전부였습니다. K8s 로 넘어오면 최소 단위가 컨테이너가 아니라 **Pod** 입니다.
+
+컨테이너를 한 겹 더 감싼 이 단위가 왜 필요한지, 그리고 그 Pod 를 띄우려면 먼저 클러스터가 있어야 하니, 로컬에 클러스터부터 하나 만들어 보겠습니다.
 
 ## 로컬 클러스터 — 내 PC 에 K8s 띄우기
 
@@ -24,7 +29,7 @@ K8s 를 써보려면 클러스터가 필요합니다. AWS 나 GCP 에 올리기 
 | **minikube** | VM 또는 Docker 컨테이너 안에 단일 노드 클러스터 생성. 가장 널리 쓰이는 로컬 도구 |
 | **kind** (Kubernetes IN Docker) | Docker 컨테이너를 노드로 사용. 멀티 노드 클러스터도 가능. CI 에서도 자주 사용 |
 
-이 글에서는 **minikube** 를 기준으로 진행합니다. Docker Desktop 이 설치되어 있다면 바로 쓸 수 있습니다.
+이 글에서는 **minikube** 를 기준으로 진행합니다. Docker Desktop 이 설치되어 있다면 가장 빠르게 따라올 수 있습니다.
 
 ### minikube 설치와 클러스터 생성
 
@@ -318,7 +323,7 @@ kubectl get pods
 
 > **Pod 는 K8s 의 최소 단위이지만, 운영에서 직접 만드는 건 아니다 — 그래도 이해해야 다음 단계로 갈 수 있다.**
 
-Docker 에서 `docker run` 으로 컨테이너를 띄웠듯, K8s 에서는 `kubectl run` 이나 YAML 로 Pod 를 띄웁니다. 다만 Pod 혼자서는 자동 복구가 안 되니, 운영에서는 반드시 **Deployment** 로 감싸야 합니다.
+Docker 에서 `docker run` 으로 컨테이너를 띄웠듯, K8s 에서는 `kubectl run` 이나 YAML 로 Pod 를 띄웁니다. 다만 Pod 혼자서는 자동 복구가 안 됩니다. 그래서 운영에서는 반드시 **Deployment** 로 감싸야 합니다.
 
 다음 편에서는 그 Deployment 를 다룹니다. "Pod 를 N 개 유지해줘" 라는 선언이 어떻게 자동 복구와 롤링 업데이트로 이어지는지.
 

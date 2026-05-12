@@ -3,6 +3,9 @@ title: "Volume 과 PVC — 컨테이너가 죽어도 살아남아야 하는 데�
 date: 2026-05-12 21:38:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, volume, persistentvolume, pvc, storageclass]
+image:
+  path: /assets/img/posts/k8s-volume-pvc/cover.png
+  alt: Kubernetes Pod 가 PVC 를 통해 PersistentVolume 과 StorageClass 를 사용하는 구조를 표현한 기술 커버 이미지
 mermaid: true
 series:
   name: kubernetes
@@ -15,7 +18,9 @@ series:
 
 Docker 시리즈 4편에서 이 문제를 다뤘습니다. 컨테이너는 기본적으로 **임시** 저장소를 씁니다. 컨테이너가 죽으면 안에 쌓인 데이터도 같이 사라집니다. Docker 에서는 `-v` 옵션으로 호스트 디렉토리를 마운트하거나 named volume 을 만들어서 해결했습니다.
 
-K8s 에서도 같은 문제가 있고, 해법도 비슷하지만 한 층 더 복잡합니다. 서버가 한 대가 아니라 여러 대이기 때문입니다. Pod 가 노드 A 에서 죽고 노드 B 에서 다시 뜨면, 노드 A 에 있던 데이터를 어떻게 가져올까요? 이 문제를 풀기 위해 K8s 는 **PersistentVolume(PV)**, **PersistentVolumeClaim(PVC)**, **StorageClass** 라는 세 가지 개념을 도입합니다.
+K8s 에서도 같은 문제가 있고, 해법도 비슷하지만 한 층 더 복잡합니다. 서버가 한 대가 아니라 여러 대이기 때문입니다. Pod 가 노드 A 에서 죽고 노드 B 에서 다시 뜨면, 노드 A 에 있던 데이터를 어떻게 가져올까요?
+
+이 문제를 풀기 위해 K8s 는 **PersistentVolume(PV)**, **PersistentVolumeClaim(PVC)**, **StorageClass** 라는 세 가지 개념을 도입합니다.
 
 ## K8s 의 볼륨 — Docker 볼륨과 뭐가 다른가
 
@@ -339,7 +344,7 @@ Deployment 로 DB 를 여러 개 띄우면, 각 Pod 가 같은 PVC 를 마운트
 
 > **Docker 의 `-v` 가 K8s 에서는 PVC 가 된다 — 디스크의 종류와 위치를 추상화해서, Pod 는 "얼마나 필요한지" 만 말하면 된다.**
 
-PV 는 실제 디스크, PVC 는 신청서, StorageClass 는 자동 생성 메뉴판. 이 세 개의 관계만 잡으면 K8s 스토리지의 큰 그림은 끝입니다.
+PV 는 실제 디스크, PVC 는 신청서, StorageClass 는 자동 생성 메뉴판입니다. 이 세 개의 관계만 잡으면 K8s 스토리지의 큰 그림은 끝입니다.
 
 다음 편은 시리즈의 마지막입니다. 외부 트래픽을 도메인과 경로로 라우팅하는 **Ingress**, 그리고 점점 늘어나는 매니페스트를 패키징하는 **Helm** 을 다룹니다.
 

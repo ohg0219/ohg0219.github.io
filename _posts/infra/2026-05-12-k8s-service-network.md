@@ -3,6 +3,9 @@ title: "Service 와 네트워크 — Pod IP 가 자꾸 바뀌는데 어떻게 �
 date: 2026-05-12 21:29:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, service, clusterip, nodeport, loadbalancer, dns]
+image:
+  path: /assets/img/posts/k8s-service-network/cover.png
+  alt: Kubernetes Service 가 변하는 Pod IP 앞에서 고정된 네트워크 진입점을 제공하는 구조를 표현한 기술 커버 이미지
 mermaid: true
 series:
   name: kubernetes
@@ -13,7 +16,7 @@ series:
 
 > **Pod 의 IP 를 메모해 뒀는데, 5분 뒤에 달라져 있었습니다.**
 
-3편에서 Deployment 가 Pod 를 자동으로 복구한다는 걸 배웠습니다. 죽은 Pod 를 새로 만들어 주니까 좋은데, 한 가지 문제가 있습니다 — 새 Pod 는 **새 IP** 를 받습니다. 프론트엔드가 백엔드 Pod 의 IP 를 직접 알고 있었다면, Pod 가 재시작될 때마다 연결이 끊깁니다.
+3편에서 Deployment 가 Pod 를 자동으로 복구한다는 걸 배웠습니다. 죽은 Pod 를 새로 만들어 주니까 좋은데, 한 가지 문제가 있습니다. 새 Pod 는 **새 IP** 를 받습니다. 프론트엔드가 백엔드 Pod 의 IP 를 직접 알고 있었다면, Pod 가 재시작될 때마다 연결이 끊깁니다.
 
 Docker 시리즈 2편에서 Docker 네트워크를 다뤘을 때, 컨테이너 이름으로 DNS 처럼 서로를 찾는 방법을 배웠습니다. K8s 에서 같은 문제를 풀어주는 것이 **Service** 입니다. Pod 앞에 서서 고정된 주소를 제공하는 안내 데스크 같은 존재입니다.
 
@@ -334,7 +337,7 @@ ports:
 
 > **Pod IP 는 임시이고, Service IP 는 고정이다 — 항상 Service 를 통해 접근해라.**
 
-Docker 에서 컨테이너 이름으로 통신하던 것의 K8s 버전이 Service 입니다. 다만 K8s 의 Service 는 로드밸런싱, DNS 등록, 외부 노출까지 한 번에 해결합니다. Deployment + Service 한 세트가 K8s 배포의 기본 단위라는 것만 기억하면 됩니다.
+Docker 에서 컨테이너 이름으로 통신하던 것의 K8s 버전이 Service 입니다. 다만 K8s 의 Service 는 로드밸런싱, DNS 등록, 외부 노출까지 함께 다룹니다. Deployment + Service 한 세트가 K8s 배포의 기본 단위라는 것만 기억하면 됩니다.
 
 다음 편에서는 앱의 **설정과 비밀**을 어떻게 관리하는지를 다룹니다. 환경 변수를 이미지에 하드코딩하지 않고, **ConfigMap** 과 **Secret** 으로 분리하는 방법.
 

@@ -3,6 +3,9 @@ title: "Ingress 와 패키징(Helm 맛보기) — 매니페스트가 늘어나�
 date: 2026-05-12 21:40:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, ingress, helm, chart, nginx-ingress]
+image:
+  path: /assets/img/posts/k8s-ingress-helm/cover.png
+  alt: Kubernetes Ingress 가 외부 트래픽을 라우팅하고 Helm 이 매니페스트를 패키징하는 흐름을 표현한 기술 커버 이미지
 mermaid: true
 series:
   name: kubernetes
@@ -15,7 +18,7 @@ series:
 
 4편에서 Service 의 세 가지 타입을 배웠습니다. 외부에 노출하려면 LoadBalancer 를 쓰면 된다고 했는데, 서비스가 늘어나면 문제가 생깁니다. LoadBalancer 하나당 클라우드 로드밸런서 하나가 생기고, 그건 곧 비용입니다. 게다가 도메인 하나에 경로별로 다른 서비스를 보내고 싶다면? LoadBalancer 만으로는 안 됩니다.
 
-그리고 시리즈를 따라오면서 YAML 파일이 계속 늘어났습니다. Deployment, Service, ConfigMap, Secret, PVC — 서비스 하나에 파일이 다섯 개씩. 환경별로 값만 다른 거의 같은 파일을 복사·붙여넣기하고 있다면, 뭔가 잘못되고 있는 겁니다.
+그리고 시리즈를 따라오면서 YAML 파일이 계속 늘어났습니다. Deployment, Service, ConfigMap, Secret, PVC. 서비스 하나에 파일이 다섯 개씩 생깁니다. 환경별로 값만 다른 거의 같은 파일을 복사·붙여넣기하고 있다면, 뭔가 잘못되고 있는 겁니다.
 
 시리즈의 마지막 편에서는 이 두 가지를 다룹니다: 외부 트래픽을 깔끔하게 라우팅하는 **Ingress**, 그리고 매니페스트를 패키징하는 **Helm**.
 
@@ -365,7 +368,7 @@ helm template my-release ./my-app -f values-prod.yaml
 
 ## 시리즈 회고 — 1편부터 7편까지
 
-7편에 걸쳐 Kubernetes 의 핵심 개념을 하나씩 쌓아 왔습니다. 전체 흐름을 한 장으로 정리합니다:
+7편에 걸쳐 Kubernetes 의 핵심 개념을 하나씩 쌓아 왔습니다. 마지막으로 전체 흐름을 한 장으로 정리합니다:
 
 ```mermaid
 flowchart TB

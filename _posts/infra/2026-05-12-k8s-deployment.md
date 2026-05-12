@@ -3,6 +3,9 @@ title: "Deployment 와 ReplicaSet — Pod 만으로 부족한 이유 — 시리�
 date: 2026-05-12 19:16:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, deployment, replicaset, rolling-update]
+image:
+  path: /assets/img/posts/k8s-deployment/cover.png
+  alt: Kubernetes Deployment 가 ReplicaSet 을 통해 여러 Pod 를 유지하고 교체하는 흐름을 표현한 기술 커버 이미지
 mermaid: true
 series:
   name: kubernetes
@@ -15,7 +18,7 @@ series:
 
 2편에서 Pod 를 직접 만들어 봤습니다. `kubectl run` 한 줄이면 뜨고, `kubectl delete pod` 한 줄이면 사라집니다. 문제는 — 사라진 뒤에 아무도 다시 만들어 주지 않는다는 것입니다. 1편에서 이야기했던 "자동 복구(Self-healing)" 는 Pod 혼자서는 불가능합니다.
 
-이번 편은 그 해답인 **Deployment** 를 다룹니다. "이 Pod 를 항상 N 개 유지해줘" 라는 선언 한 줄이, 자동 복구와 무중단 배포를 어떻게 만들어 내는지.
+이번 편은 그 해답인 **Deployment** 를 다룹니다. "이 Pod 를 항상 N 개 유지해줘" 라는 선언 한 줄이 자동 복구와 무중단 배포를 어떻게 만들어 내는지 살펴봅니다.
 
 ## Pod 만으로 부족한 이유
 
@@ -349,7 +352,7 @@ kubectl set image deployment/my-app wrong-name=nginx:1.28
 
 > **Pod 는 직접 만들지 말고, Deployment 에게 맡겨라 — 자동 복구, 스케일링, 무중단 배포가 공짜로 따라온다.**
 
-Deployment 가 ReplicaSet 을 만들고, ReplicaSet 이 Pod 를 만든다. 이 3단 구조를 알고 있으면, `kubectl get pods` 에 찍히는 긴 이름이 더 이상 낯설지 않습니다.
+Deployment 가 ReplicaSet 을 만들고, ReplicaSet 이 Pod 를 만듭니다. 이 3단 구조를 알고 있으면, `kubectl get pods` 에 찍히는 긴 이름이 더 이상 낯설지 않습니다.
 
 다음 편에서는 이 Pod 들에 **어떻게 접근하는가** 를 다룹니다. Pod 는 죽었다 살아날 때마다 IP 가 바뀝니다. 그러면 다른 서비스가 이 Pod 를 어떻게 찾나요? 그 문제를 풀어주는 것이 **Service** 입니다.
 
