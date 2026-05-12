@@ -161,8 +161,10 @@
       }
 
       function fetchJson(url) {
+        console.debug('[gc-counter] fetching', url);
         return fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
           .then(function (r) {
+            console.debug('[gc-counter] response', r.status, url);
             if (!r.ok) throw new Error('HTTP ' + r.status);
             return r.json();
           });
@@ -185,7 +187,10 @@
             todayEl.textContent = fmt(n);
             writeCache(todayKey, n);
           })
-          .catch(function () { todayEl.textContent = '-'; });
+          .catch(function (e) {
+            todayEl.textContent = '?';
+            console.warn('[gc-counter] today fetch failed:', e);
+          });
       }
 
       // 전체: 큰 응답 (~800KB) — 6시간 캐시로 거의 1회만 실행
@@ -199,7 +204,10 @@
             totalEl.textContent = fmt(n);
             writeCache(totalKey, n);
           })
-          .catch(function () { totalEl.textContent = '-'; });
+          .catch(function (e) {
+            totalEl.textContent = '?';
+            console.warn('[gc-counter] total fetch failed:', e);
+          });
       }
     })();
   </script>
