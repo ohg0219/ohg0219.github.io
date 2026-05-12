@@ -1,0 +1,24 @@
+title: Hayden's Dev Notes
+description: AI 와 함께 정리하는 개발 학습 기록
+author: Hayden
+url: https://ohg0219.github.io
+theme: minima
+plugins:
+  - jekyll-feed
+permalink: /:year/:month/:day/:title/
+timezone: Asia/Seoul
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - README.md
+  - .claude
