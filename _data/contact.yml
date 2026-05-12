@@ -1,0 +1,12 @@
+# 사이드바 하단 아이콘 목록. Chirpy 가 기본 제공하는 항목 중 사용하는 것만 켜둠.
+- type: github
+  icon: "fab fa-github"
+  noblank: true
+
+- type: email
+  icon: "fas fa-envelope"
+  noblank: true
+
+- type: rss
+  icon: "fas fa-rss"
+  noblank: true

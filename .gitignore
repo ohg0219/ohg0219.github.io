@@ -5,6 +5,13 @@ _site/
 vendor/
 Gemfile.lock
 
+# Node / 테마 빌드 산출물
+node_modules/
+*.gem
+package-lock.json
+_sass/vendors/
+assets/js/dist/
+
 # 대화 단위 임시 메타데이터 (Skill 이 매번 새로 씀)
 .claude/blog-session.md
 
