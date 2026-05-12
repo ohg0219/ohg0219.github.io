@@ -1,6 +1,6 @@
 ---
 title: "왜 Kubernetes 인가 — docker run 으로 30분 만에 무너지는 시나리오 — 시리즈 1편"
-date: 2026-05-12 21:00:00 +0900
+date: 2026-05-12 19:00:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, orchestration, container, docker]
 mermaid: true
