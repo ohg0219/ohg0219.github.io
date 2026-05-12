@@ -31,10 +31,12 @@ toc: true
 paginate: 10
 paginate_path: "/page:num/"
 
+# PWA 비활성화 — Service Worker 캐시가 새 배포 후 구버전을 먼저 보여주는 문제로
+# 글이 자주 갱신되는 블로그에는 부적합. "앱 설치 / 오프라인 접근" 기능 포기.
 pwa:
-  enabled: true
+  enabled: false
   cache:
-    enabled: true
+    enabled: false
 
 # ---------------- Comments (giscus) ----------------
 # giscus.app 발급값 기준. repo Discussions 활성 + giscus GitHub App 설치가 전제.
