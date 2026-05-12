@@ -38,6 +38,16 @@ pwa:
   cache:
     enabled: false
 
+# ---------------- Analytics (GoatCounter) ----------------
+# 트래킹 스크립트 삽입 — 모든 페이지에서 https://ohg0219.goatcounter.com 으로 pageview 전송.
+analytics:
+  goatcounter:
+    id: ohg0219
+
+# 글 메타 영역에 "조회수 N회" 라벨 표시. Chirpy 7.x 는 goatcounter 만 지원.
+pageviews:
+  provider: goatcounter
+
 # ---------------- Comments (giscus) ----------------
 # giscus.app 발급값 기준. repo Discussions 활성 + giscus GitHub App 설치가 전제.
 comments:
