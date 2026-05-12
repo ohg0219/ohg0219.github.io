@@ -3,6 +3,7 @@ title: "Jekyll 블로그 자동화 셋업"
 date: 2026-05-12 12:58:00 +0900
 categories: [tooling]
 tags: [jekyll, blog, automation, claude-code, github-pages]
+mermaid: true
 redirect_from:
   - /2026/05/12/jekyll-blog-automation-setup/
 ---
@@ -106,16 +107,13 @@ Gemfile.lock
 
 워크플로는 이렇게 압축됩니다.
 
-```
-대화 시작 → /blog-start "주제"
-   ↓
-자유롭게 Claude Code 와 Q&A
-   ↓
-/blog-draft        ← _posts/ 에 초안 마크다운 생성
-   ↓
-에디터에서 검토·수정
-   ↓
-git push           ← GH Pages 자동 빌드·배포
+```mermaid
+flowchart TD
+    A[대화 시작] --> B["/blog-start '주제'"]
+    B --> C[자유롭게 Claude Code 와 Q&amp;A]
+    C --> D["/blog-draft<br/>_posts/ 에 초안 마크다운 생성"]
+    D --> E[에디터에서 검토·수정]
+    E --> F["git push<br/>GH Pages 자동 빌드·배포"]
 ```
 
 ## 로컬 미리보기와 배포

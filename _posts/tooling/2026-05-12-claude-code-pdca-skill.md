@@ -3,6 +3,7 @@ title: "AI 에게 절차를 강제하기 — Claude Code PDCA 스킬을 들여�
 date: 2026-05-12 00:00:00 +0900
 categories: [tooling]
 tags: [claude-code, pdca, ai-workflow, skill, automation]
+mermaid: true
 ---
 
 > "어제 어디까지 했지?"
@@ -27,18 +28,16 @@ Claude Code 의 PDCA Skill 은 이 문제를 정면으로 다룹니다. 이번 �
 
 먼저 그림 한 장.
 
-```
-[user]  /pdca plan user-auth
-   │
-   ▼
-[PDCA Skill]  ── docs/.pdca-status.json  (단일 상태 파일)
-   │
-   ├─ plan    → docs/01-plan/features/...
-   ├─ design  → docs/02-design/features/...
-   ├─ do      → 코드 작성 (서브 에이전트 호출)
-   ├─ analyze → docs/03-analysis/...   (matchRate %)
-   ├─ iterate → 자동 개선 루프
-   └─ report  → docs/04-report/features/...
+```mermaid
+flowchart TD
+    U["/pdca plan user-auth"] --> S[PDCA Skill]
+    S -.- ST[("docs/.pdca-status.json<br/>단일 상태 파일")]
+    S --> P["plan → docs/01-plan/features/..."]
+    S --> D["design → docs/02-design/features/..."]
+    S --> Do["do → 코드 작성 / 서브 에이전트 호출"]
+    S --> An["analyze → docs/03-analysis/...<br/>matchRate %"]
+    S --> It["iterate → 자동 개선 루프"]
+    S --> R["report → docs/04-report/features/..."]
 ```
 
 `/pdca <action> <feature>` 하나의 진입점이 모든 단계를 라우팅합니다. 핵심은 **상태가 파일 하나로 외화**된다는 점입니다. `docs/.pdca-status.json` 이 "지금 어디까지 와 있는가" 를 갖고 있고, 모든 액션이 이걸 읽고 갱신합니다. 다음 세션이 어제의 자리에서 시작할 수 있는 이유입니다.
@@ -93,13 +92,12 @@ do
 
 가장 인상 깊은 부분. `analyze` 와 `iterate` 는 **한 쌍의 루프** 입니다.
 
-```
-analyze (gap-detector)
-   │
-   ├─ matchRate ≥ 90% → report 로
-   └─ matchRate < 90% → iterate (pdca-iterator)
-                          │
-                          └─ 다시 analyze
+```mermaid
+flowchart TD
+    A["analyze<br/>(gap-detector)"] --> Q{"matchRate ≥ 90% ?"}
+    Q -->|예| R[report 로]
+    Q -->|아니오| I["iterate<br/>(pdca-iterator)"]
+    I --> A
 ```
 
 평가하는 에이전트와 수정하는 에이전트를 분리하는 **Evaluator-Optimizer 패턴** 입니다. 사람이 "다시 해 줘" 라고 시키지 않아도, 점수가 임계치 미만이면 알아서 한 사이클 더 돌립니다.
