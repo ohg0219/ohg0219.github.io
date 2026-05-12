@@ -4,3 +4,7 @@
 docker:
   title: Docker
   description: 기초부터 운영까지
+
+kubernetes:
+  title: Kubernetes
+  description: 컨테이너 오케스트레이션 입문
