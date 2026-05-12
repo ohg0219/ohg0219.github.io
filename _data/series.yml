@@ -1,0 +1,6 @@
+# 시리즈 메타데이터 — _includes/series-nav.html 에서 참조한다.
+# 글 front matter 의 series.name 이 여기 키와 매칭된다.
+
+docker:
+  title: Docker
+  description: 기초부터 운영까지

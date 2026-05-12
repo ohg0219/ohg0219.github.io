@@ -39,12 +39,18 @@ slug: <slug>
 started_at: <YYYY-MM-DD HH:MM>
 categories: [<cat1>, <cat2>]
 tags: [<tag1>, <tag2>, <tag3>]
+# 시리즈 글이면 다음 블록을 추가한다. 단편이면 생략.
+# series:
+#   name: <series-slug>    # _data/series.yml 의 키 (예: docker)
+#   part: <N>              # 1, 2, 3...
 ---
 
 # 대화 메모
 
 (대화 중 핵심 포인트·결정·코드 스니펫 위치 등을 누적 메모해도 됨)
 ```
+
+사용자가 "시리즈로 작성" 의향을 비치면 `series.name` (영문 slug) 과 `part` 를 함께 잡는다. 새 시리즈면 `_data/series.yml` 에 시리즈 이름·설명도 한 블록 추가하는 것이 깔끔하다 (이건 /blog-draft 단계에서 처리해도 됨).
 
 `started_at` 의 날짜·시간은 시스템 현재 시각을 사용한다(Asia/Seoul 기준이면 그대로 표기).
 

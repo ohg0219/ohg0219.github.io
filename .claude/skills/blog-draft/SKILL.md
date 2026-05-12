@@ -49,10 +49,24 @@ title: "<topic>"
 date: <YYYY-MM-DD HH:MM:SS +0900>
 categories: [<categories>]
 tags: [<tags>]
+# 다이어그램이 본문에 들어가면 다음 줄 추가:
+# mermaid: true
+# 시리즈 글이면 다음 블록 추가 (.claude/blog-session.md 의 series 필드 참고):
+# series:
+#   name: <series-slug>     # _data/series.yml 의 키와 일치
+#   part: <N>               # 1, 2, 3...
 ---
 ```
 
 `layout: post` 는 적지 않는다 — 블로그 `_config.yml` 의 defaults 가 자동 적용한다.
+
+**시리즈 글이면 본문 맨 위에 다음 한 줄을 추가한다** (front matter 바로 다음, 리드 단락보다 위):
+
+```liquid
+{% include series-nav.html %}
+```
+
+이 include 가 같은 `series.name` 을 가진 모든 글을 part 순으로 나열한 박스를 렌더한다. 새로운 시리즈를 시작하는 경우 `_data/series.yml` 에 시리즈 이름·설명을 한 블록 추가한다 (없으면 박스 헤더가 series.name slug 그대로 표시됨).
 
 **본문 구조 — 톤 가이드 (중요)**:
 

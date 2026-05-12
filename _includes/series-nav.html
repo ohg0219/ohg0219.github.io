@@ -1,0 +1,32 @@
+{%- if page.series -%}
+{%- assign series_name = page.series.name -%}
+{%- assign series_meta = site.data.series[series_name] -%}
+{%- assign series_posts = site.posts | where_exp: "p", "p.series.name == series_name" | sort: "series.part" -%}
+
+<aside class="series-nav"
+       style="border-left: 4px solid var(--main-border-color, #d4d4d4);
+              background: var(--card-bg, #f8f9fa);
+              padding: 0.9rem 1.1rem;
+              margin: 1.5rem 0 2rem;
+              border-radius: 4px;
+              font-size: 0.95em;">
+  <div style="margin-bottom: 0.5rem;">
+    📚 <strong>{{ series_meta.title | default: series_name }} 시리즈</strong>
+    {%- if series_meta.description %}
+    <span style="color: var(--text-muted-color, #888); font-weight: 400;">— {{ series_meta.description }}</span>
+    {%- endif %}
+  </div>
+  <ol style="margin: 0; padding-left: 1.4rem;">
+  {%- for p in series_posts %}
+    <li style="margin: 0.15rem 0;{% if p.url == page.url %} font-weight: 600;{% endif %}">
+    {%- if p.url == page.url -%}
+      {{ p.title }}
+      <span style="color: var(--text-muted-color, #888); font-weight: 400; font-size: 0.9em;">— 현재 글</span>
+    {%- else -%}
+      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+    {%- endif -%}
+    </li>
+  {%- endfor %}
+  </ol>
+</aside>
+{%- endif -%}
