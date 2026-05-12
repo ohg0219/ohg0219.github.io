@@ -3,6 +3,9 @@ title: "Docker 네트워크 — bridge, host, custom — 시리즈 2편"
 date: 2026-05-12 16:20:00 +0900
 categories: [infra]
 tags: [docker, network, bridge, port-mapping, container-dns]
+image:
+  path: /assets/img/posts/docker-network/cover.png
+  alt: Docker 컨테이너들이 브리지 네트워크와 포트 매핑으로 연결되는 구조를 표현한 기술 커버 이미지
 mermaid: true
 series:
   name: docker
@@ -13,9 +16,11 @@ series:
 
 > 컨테이너 두 개를 띄우자마자 마주치는 질문은 똑같습니다. **"얘들 어떻게 서로 부르지?"**
 
-웹 서버와 DB 컨테이너를 띄우긴 했는데, 웹 서버가 DB 에 접속하려면 호스트를 어떻게 적어야 할까요. `localhost` 는 통하지 않습니다. 컨테이너 입장에서 `localhost` 는 자기 자신이지 호스트가 아닙니다. 호스트 IP 를 직접 적자니 컨테이너가 옮겨갈 때마다 바뀝니다. Docker 가 이 문제를 다루는 방식이 **네트워크 드라이버** 와 **DNS** 입니다.
+웹 서버와 DB 컨테이너를 띄우긴 했는데, 웹 서버가 DB 에 접속하려면 호스트를 어떻게 적어야 할까요. `localhost` 는 통하지 않습니다. 컨테이너 입장에서 `localhost` 는 자기 자신입니다. 호스트 IP 를 직접 적자니 컨테이너가 옮겨가거나 재시작될 때마다 불안합니다.
 
-이번 편은 기본 네트워크 세 종류, port mapping 이 실제로 무엇을 하는지, 컨테이너 이름을 DNS 처럼 쓰는 방법, 그리고 운영에서 자주 마주치는 네트워크 함정 몇 가지를 정리합니다.
+Docker 가 이 문제를 다루는 방식이 **네트워크 드라이버** 와 **DNS** 입니다.
+
+이번 편은 기본 네트워크 세 종류, port mapping 이 실제로 무엇을 하는지, 컨테이너 이름을 DNS 처럼 쓰는 방법, 그리고 운영에서 자주 마주치는 네트워크 함정을 정리합니다.
 
 ## 기본 네트워크 세 종류
 
@@ -38,7 +43,7 @@ ghi789...      none      null      local
 | **host** | 컨테이너가 호스트의 네트워크 스택을 그대로 사용. 격리 없음. port mapping 불필요 | 성능이 critical 하거나 호스트 IP 가 필요한 시스템 도구. Linux 에서만 정상 동작 (macOS·Windows 는 VM 안 호스트라 의도와 다르게 동작) |
 | **none** | 네트워크 인터페이스 자체가 없음 | 네트워크가 필요 없는 일회성 작업, 격리 컨테이너 |
 
-가장 자주 쓰는 건 단연 **bridge**. 99% 의 경우 이걸로 충분합니다. 다만 **기본 bridge 와 사용자가 만든 custom bridge 는 다르다** 는 점이 곧 핵심으로 나옵니다.
+가장 자주 쓰는 건 단연 **bridge** 입니다. 99% 의 경우 이걸로 충분합니다. 다만 **기본 bridge 와 사용자가 만든 custom bridge 는 다르다** 는 점이 곧 핵심으로 나옵니다.
 
 ## port mapping 이 실제로 하는 일
 
@@ -121,7 +126,7 @@ netstat -ano | findstr :8080
 
 > **컨테이너 통신은 "같은 네트워크에 있는가" 하나만 보면 된다.**
 
-격리·DNS·port mapping 같은 개념들은 결국 *"누가 누구를 볼 수 있는가"* 를 다루는 도구입니다. 트러블슈팅도 똑같이 — 우선 `docker network inspect` 로 같은 그물 안에 있는지부터 보면 절반은 풀립니다.
+격리·DNS·port mapping 같은 개념들은 결국 *"누가 누구를 볼 수 있는가"* 를 다루는 도구입니다. 트러블슈팅도 같습니다. 우선 `docker network inspect` 로 같은 네트워크 안에 있는지부터 보면 절반은 풀립니다.
 
 다음 편은 이 모든 걸 한 줄로 묶는 **Docker Compose** 입니다. 여러 컨테이너를 YAML 하나로 선언하고, custom network 도 알아서 만들어주는 도구를 다룹니다.
 

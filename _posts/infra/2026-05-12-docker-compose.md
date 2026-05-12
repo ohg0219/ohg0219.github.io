@@ -3,6 +3,9 @@ title: "Docker Compose — 여러 컨테이너를 한 파일로 — 시리즈 3�
 date: 2026-05-12 16:45:00 +0900
 categories: [infra]
 tags: [docker, docker-compose, multi-container, orchestration, yaml]
+image:
+  path: /assets/img/posts/docker-compose/cover.png
+  alt: Docker Compose 파일이 여러 서비스와 네트워크와 볼륨을 구성하는 모습을 표현한 기술 커버 이미지
 mermaid: true
 series:
   name: docker
@@ -13,9 +16,9 @@ series:
 
 > **`docker run` 을 다섯 번 쳤다면, 그건 이미 Compose 의 신호입니다.**
 
-웹 한 개, DB 한 개, 캐시 한 개, 그리고 둘을 잇는 custom network 까지 — 손으로 띄우다 보면 어느 순간 README 에 "이 명령들을 순서대로 치세요" 가 5줄이 됩니다. 한 줄만 빠뜨려도 컨테이너 이름이 충돌하거나, 같은 네트워크에 안 붙어서 2편에서 봤던 *"왜 통신이 안 되지"* 가 재현됩니다.
+웹 한 개, DB 한 개, 캐시 한 개, 그리고 둘을 잇는 custom network 까지. 손으로 띄우다 보면 어느 순간 README 에 "이 명령들을 순서대로 치세요" 가 5줄이 됩니다. 한 줄만 빠뜨려도 컨테이너 이름이 충돌하거나, 같은 네트워크에 안 붙어서 2편에서 봤던 *"왜 통신이 안 되지"* 가 재현됩니다.
 
-Docker Compose 는 이걸 YAML 파일 하나로 묶는 도구입니다. 이번 편은 Compose 가 왜 필요한지, `compose.yml` 의 최소 골격, 서비스끼리 이름으로 부르는 메커니즘 (2편 네트워크의 연장), 그리고 운영에서 자주 밟는 함정 — `depends_on` 이 "준비 완료" 를 보장하지 않는다는 점 — 까지 정리합니다.
+Docker Compose 는 이 반복 작업을 YAML 파일 하나로 묶는 도구입니다. 이번 편은 Compose 가 왜 필요한지, `compose.yml` 의 최소 골격, 서비스끼리 이름으로 부르는 메커니즘, 그리고 운영에서 자주 밟는 함정인 `depends_on` 의 한계까지 정리합니다.
 
 ## docker run 다섯 줄 vs compose.yml 한 파일
 
@@ -66,7 +69,7 @@ volumes:
 
 ## 최소 골격 — services, networks, volumes
 
-Compose 파일의 톱레벨은 사실상 세 개입니다.
+Compose 파일의 톱레벨은 사실상 세 개만 먼저 보면 됩니다.
 
 ```yaml
 services:   # 띄울 컨테이너들. 각 키가 서비스 이름이자 DNS 이름이 된다
@@ -226,7 +229,7 @@ services:
 
 > **Compose 의 본질은 "여러 docker run + network create + volume create 를 한 파일에 적은 것" 그 이상도 이하도 아닙니다.**
 
-그래서 1·2편의 모델 — 이미지/컨테이너, 네트워크, DNS — 이 머리에 있으면 Compose 는 거의 새로 배울 게 없습니다. 새로 신경 쓸 점은 두 가지뿐:
+그래서 1·2편의 모델, 즉 이미지/컨테이너와 네트워크/DNS 가 머리에 있으면 Compose 는 갑자기 어려워지지 않습니다. 새로 신경 쓸 점은 두 가지뿐입니다.
 
 1. **`depends_on` 은 "시작 순서" 이지 "준비 완료" 가 아니다.** healthcheck 또는 클라이언트 재시도.
 2. **비밀 값은 `.env` 로 빼고 `.gitignore` 에 올린다.**
