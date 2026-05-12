@@ -37,15 +37,14 @@ pwa:
     enabled: true
 
 # ---------------- Comments (giscus) ----------------
-# 사전 준비: https://giscus.app/ko 에서 발급한 값으로 교체. 모든 값이 채워져야 위젯이 동작함.
-# 값이 비어 있는 동안엔 provider 키 자체를 비워두면 안전.
+# giscus.app 발급값 기준. repo Discussions 활성 + giscus GitHub App 설치가 전제.
 comments:
   provider: giscus
   giscus:
     repo: ohg0219/ohg0219.github.io
-    repo_id: ""           # TODO: giscus.app 에서 발급된 값으로 교체
+    repo_id: "R_kgDOSa82MQ"
     category: Announcements
-    category_id: ""       # TODO: giscus.app 에서 발급된 값으로 교체
+    category_id: "DIC_kwDOSa82Mc4C811q"
     mapping: pathname
     strict: "0"
     input_position: bottom
