@@ -144,6 +144,7 @@
       var TTL_TODAY = 5 * 60 * 1000;        /* 5분 */
       var TTL_TOTAL = 6 * 60 * 60 * 1000;   /* 6시간 */
       var API = 'https://' + site + '.goatcounter.com/api/v0/stats/total';
+      var PUBLIC_TOTAL = 'https://' + site + '.goatcounter.com/counter/TOTAL.json';
 
       function pad(n) { return n < 10 ? '0' + n : '' + n; }
       function ymd(d) {
@@ -177,8 +178,8 @@
 
       var today = new Date();
       var tomorrow = new Date(today.getTime() + 86400000);
-      var todayKey = 'gc:today:' + ymd(today);
-      var totalKey = 'gc:total';
+      var todayKey = 'gc:today-v2:' + ymd(today);
+      var totalKey = 'gc:total-v2';
 
       /* 오늘: 작은 응답 (~800B) */
       var cachedToday = readCache(todayKey, TTL_TODAY);
@@ -198,14 +199,20 @@
           });
       }
 
-      /* 전체: 큰 응답 (~800KB) — 6시간 캐시로 거의 1회만 실행 */
+      /* 전체: 공개 /counter/TOTAL.json — 토큰 불필요, ~44B */
       var cachedTotal = readCache(totalKey, TTL_TOTAL);
       if (cachedTotal != null) {
         totalEl.textContent = fmt(cachedTotal);
       } else {
-        fetchJson(API + '?start=2020-01-01&end=' + ymd(today))
+        console.log('[gc-counter] fetching', PUBLIC_TOTAL);
+        fetch(PUBLIC_TOTAL)
+          .then(function (r) {
+            console.log('[gc-counter] response', r.status, PUBLIC_TOTAL);
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+          })
           .then(function (data) {
-            var n = data.total || 0;
+            var n = parseInt(data.count, 10) || 0;
             totalEl.textContent = fmt(n);
             writeCache(totalKey, n);
           })
