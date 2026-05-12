@@ -7,6 +7,10 @@
   icon: "fas fa-envelope"
   noblank: true
 
+- type: linkedin
+  icon: "fab fa-linkedin"
+  url: https://www.linkedin.com/in/hyunggyun-oh
+
 - type: rss
   icon: "fas fa-rss"
   noblank: true
