@@ -141,8 +141,8 @@
       var todayEl = el.querySelector('[data-vc-today]');
       var totalEl = el.querySelector('[data-vc-total]');
 
-      var TTL_TODAY = 5 * 60 * 1000;        // 5분
-      var TTL_TOTAL = 6 * 60 * 60 * 1000;   // 6시간
+      var TTL_TODAY = 5 * 60 * 1000;        /* 5분 */
+      var TTL_TOTAL = 6 * 60 * 60 * 1000;   /* 6시간 */
       var API = 'https://' + site + '.goatcounter.com/api/v0/stats/total';
 
       function pad(n) { return n < 10 ? '0' + n : '' + n; }
@@ -180,7 +180,7 @@
       var todayKey = 'gc:today:' + ymd(today);
       var totalKey = 'gc:total';
 
-      // 오늘: 작은 응답 (~800B)
+      /* 오늘: 작은 응답 (~800B) */
       var cachedToday = readCache(todayKey, TTL_TODAY);
       if (cachedToday != null) {
         todayEl.textContent = fmt(cachedToday);
@@ -198,7 +198,7 @@
           });
       }
 
-      // 전체: 큰 응답 (~800KB) — 6시간 캐시로 거의 1회만 실행
+      /* 전체: 큰 응답 (~800KB) — 6시간 캐시로 거의 1회만 실행 */
       var cachedTotal = readCache(totalKey, TTL_TOTAL);
       if (cachedTotal != null) {
         totalEl.textContent = fmt(cachedTotal);
