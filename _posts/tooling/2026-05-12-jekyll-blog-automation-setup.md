@@ -1,9 +1,10 @@
 ---
-layout: post
 title: "Jekyll 블로그 자동화 셋업"
 date: 2026-05-12 12:58:00 +0900
 categories: [tooling]
 tags: [jekyll, blog, automation, claude-code, github-pages]
+redirect_from:
+  - /2026/05/12/jekyll-blog-automation-setup/
 ---
 
 ## 문제 상황

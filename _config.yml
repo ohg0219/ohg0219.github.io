@@ -1,24 +1,155 @@
-title: Hayden's Dev Notes
-description: AI 와 함께 정리하는 개발 학습 기록
-author: Hayden
-url: https://ohg0219.github.io
-theme: minima
-plugins:
-  - jekyll-feed
-permalink: /:year/:month/:day/:title/
+# ---------------- Site ----------------
+theme: jekyll-theme-chirpy
+
+lang: ko-KR
 timezone: Asia/Seoul
 
+title: Hayden's Dev Notes
+tagline: AI 와 함께 정리하는 개발 학습 기록
+description: >-
+  Claude Code 와 나눈 Q&A, 에러 해결 과정, 기술 탐구를 글로 남깁니다.
+
+url: "https://ohg0219.github.io"
+
+github:
+  username: ohg0219
+
+social:
+  name: Hayden
+  email: a99048925@gmail.com
+  links:
+    - https://github.com/ohg0219
+
+# 사이드바 아바타. 실제 이미지(권장 512x512 PNG)를 assets/img/avatar.png 로 두고
+# 아래 값을 /assets/img/avatar.png 로 설정. 그 전까지는 비워두어 깨진 이미지 표시를 피함.
+avatar:
+
+# ---------------- Theme behavior ----------------
+theme_mode: # 비워두면 OS 설정에 따라 자동 (light/dark 토글 제공)
+
+toc: true
+paginate: 10
+paginate_path: "/page:num/"
+
+pwa:
+  enabled: true
+  cache:
+    enabled: true
+
+# ---------------- Comments (giscus) ----------------
+# 사전 준비: https://giscus.app/ko 에서 발급한 값으로 교체. 모든 값이 채워져야 위젯이 동작함.
+# 값이 비어 있는 동안엔 provider 키 자체를 비워두면 안전.
+comments:
+  provider: giscus
+  giscus:
+    repo: ohg0219/ohg0219.github.io
+    repo_id: ""           # TODO: giscus.app 에서 발급된 값으로 교체
+    category: Announcements
+    category_id: ""       # TODO: giscus.app 에서 발급된 값으로 교체
+    mapping: pathname
+    strict: "0"
+    input_position: bottom
+    lang: ko
+    reactions_enabled: "1"
+
+# ---------------- Markdown / Highlighter ----------------
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+# ---------------- Plugins (built into theme gem) ----------------
+plugins:
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-archives
+
+# ---------------- Archives ----------------
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
+
+# ---------------- Collections ----------------
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
+# ---------------- Defaults ----------------
 defaults:
   - scope:
       path: ""
       type: posts
     values:
       layout: post
+      comments: true
+      toc: true
+      permalink: /posts/:title/
+  - scope:
+      path: _drafts
+    values:
+      comments: false
+  - scope:
+      path: ""
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
 
+# ---------------- Sass ----------------
+sass:
+  style: compressed
+
+# ---------------- Compress HTML ----------------
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: [development]
+
+# ---------------- Exclude ----------------
 exclude:
+  - "*.gem"
+  - "*.gemspec"
+  - tools
+  - README.md
+  - LICENSE
+  - "*.config.js"
+  - package*.json
   - Gemfile
   - Gemfile.lock
   - vendor
   - .bundle
-  - README.md
   - .claude
+  - node_modules
+
+jekyll_compose:
+  default_front_matter:
+    drafts:
+      title:
+      description:
+      categories:
+      tags:
+    posts:
+      title:
+      description:
+      categories:
+      tags:
