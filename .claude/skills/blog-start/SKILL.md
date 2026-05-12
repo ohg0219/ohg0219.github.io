@@ -26,6 +26,7 @@ description: 현재 Claude Code 대화를 블로그 글 작성 대상으로 마�
 - `categories`: `backend`, `infra`, `frontend`, `tooling`, `language`, `etc` 중 1~2개를 주제 기반으로 추정
 - `tags`: 구체적 키워드 3~5개 (예: `spring-boot`, `jpa`, `n+1`, `query-optimization`)
 - 한글 태그도 허용하되 가능하면 영문 우선
+- **중요**: `categories[0]` 이 곧 포스트 파일이 들어갈 폴더 이름이 된다 (`_posts/<categories[0]>/...`). 위 6개 카테고리 중 하나로 통일해서 폴더 일관성을 유지.
 
 ## 4. 메타데이터 파일 작성
 
