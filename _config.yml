@@ -22,7 +22,7 @@ social:
 
 # 사이드바 아바타. 실제 이미지(권장 512x512 PNG)를 assets/img/avatar.png 로 두고
 # 아래 값을 /assets/img/avatar.png 로 설정. 그 전까지는 비워두어 깨진 이미지 표시를 피함.
-avatar:
+avatar: /assets/img/avatar.png
 
 # ---------------- Theme behavior ----------------
 theme_mode: # 비워두면 OS 설정에 따라 자동 (light/dark 토글 제공)
