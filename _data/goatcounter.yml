@@ -1,0 +1,10 @@
+# GoatCounter API 통계 조회용 설정.
+# 사이드바 방문자 카운터(_includes/sidebar.html)가 이 값을 참조한다.
+#
+# read_token 은 'Count' (Read statistics) 권한만 가진 읽기 전용 토큰.
+# 빌드 결과물(JS)에 그대로 노출되지만, 권한이 통계 조회로 제한되어 있어
+# 노출되어도 통계 열람 외 다른 행위는 불가능하다. 폐기/재발급:
+# https://ohg0219.goatcounter.com/user/api
+
+site_code: ohg0219
+read_token: 960h9brqvnsk1gwtast2ogxxs1u7rbx9mjjih7szjyibt1dygz

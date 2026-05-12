@@ -1,0 +1,218 @@
+<!-- The Side Bar -->
+<!--
+  Chirpy 7.5 _includes/sidebar.html 을 그대로 복사한 뒤 sidebar-bottom 직전에
+  방문자 카운터 블록을 끼워 넣은 오버라이드 파일.
+  테마 업그레이드 시 원본과 diff 비교 후 재적용 필요.
+-->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+    <a href="{{ '/' | relative_url }}" id="avatar" class="rounded-circle">
+      {%- if site.avatar != empty and site.avatar -%}
+        {%- capture avatar_url -%}
+          {% include media-url.html src=site.avatar %}
+        {%- endcapture -%}
+        <img src="{{- avatar_url -}}" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      {%- endif -%}
+    </a>
+
+    <a class="site-title d-block" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <p class="site-subtitle fst-italic mb-0">{{ site.tagline }}</p>
+  </header>
+  <!-- .profile-wrapper -->
+
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
+        <a href="{{ '/' | relative_url }}" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>{{ site.data.locales[include.lang].tabs.home | upcase }}</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      {% for tab in site.tabs %}
+        <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
+          <a href="{{ tab.url | relative_url }}" class="nav-link">
+            <i class="fa-fw {{ tab.icon }}"></i>
+            {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
+
+            <span>{{ site.data.locales[include.lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
+          </a>
+        </li>
+        <!-- .nav-item -->
+      {% endfor %}
+    </ul>
+  </nav>
+
+  {% if site.data.goatcounter.site_code and site.data.goatcounter.read_token %}
+    <div id="visitor-counter"
+         class="w-100 px-2 pb-2"
+         data-gc-site="{{ site.data.goatcounter.site_code }}"
+         data-gc-token="{{ site.data.goatcounter.read_token }}">
+      <div class="vc-row d-flex justify-content-between">
+        <span class="vc-label">오늘</span>
+        <span class="vc-value" data-vc-today>—</span>
+      </div>
+      <div class="vc-row d-flex justify-content-between">
+        <span class="vc-label">전체</span>
+        <span class="vc-value" data-vc-total>—</span>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    {% unless site.theme_mode %}
+      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
+        <i class="fas fa-adjust"></i>
+      </button>
+
+      {% if site.data.contact.size > 0 %}
+        <span class="icon-border"></span>
+      {% endif %}
+    {% endunless %}
+
+    {% for entry in site.data.contact %}
+      {%- assign url = null -%}
+
+      {% case entry.type %}
+        {% when 'github', 'twitter' %}
+          {%- unless site[entry.type].username -%}
+            {%- continue -%}
+          {%- endunless -%}
+          {%- capture url -%}
+            https://{{ entry.type }}.com/{{ site[entry.type].username }}
+          {%- endcapture -%}
+        {% when 'email' %}
+          {%- unless site.social.email -%}
+            {%- continue -%}
+          {%- endunless -%}
+          {%- assign email = site.social.email | split: '@' -%}
+          {%- capture url -%}
+            javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
+          {%- endcapture -%}
+        {% when 'rss' %}
+          {% assign url = '/feed.xml' | relative_url %}
+        {% else %}
+          {% assign url = entry.url %}
+      {% endcase %}
+
+      {% if url %}
+        <a
+          href="{{ url }}"
+          aria-label="{{ entry.type }}"
+          {% assign link_types = '' %}
+
+          {% unless entry.noblank %}
+            target="_blank"
+            {% assign link_types = 'noopener noreferrer' %}
+          {% endunless %}
+
+          {% if entry.type == 'mastodon' %}
+            {% assign link_types = link_types | append: ' me' | strip %}
+          {% endif %}
+
+          {% unless link_types == empty %}
+            rel="{{ link_types }}"
+          {% endunless %}
+        >
+          <i class="{{ entry.icon }}"></i>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+<!-- #sidebar -->
+
+{% if site.data.goatcounter.site_code and site.data.goatcounter.read_token %}
+  <script>
+    (function () {
+      var el = document.getElementById('visitor-counter');
+      if (!el) return;
+
+      var site = el.dataset.gcSite;
+      var token = el.dataset.gcToken;
+      var todayEl = el.querySelector('[data-vc-today]');
+      var totalEl = el.querySelector('[data-vc-total]');
+
+      var TTL_TODAY = 5 * 60 * 1000;        // 5분
+      var TTL_TOTAL = 6 * 60 * 60 * 1000;   // 6시간
+      var API = 'https://' + site + '.goatcounter.com/api/v0/stats/total';
+
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+      function ymd(d) {
+        return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+      }
+      function fmt(n) { return Number(n).toLocaleString('ko-KR'); }
+
+      function readCache(key, ttl) {
+        try {
+          var raw = localStorage.getItem(key);
+          if (!raw) return null;
+          var obj = JSON.parse(raw);
+          if (Date.now() - obj.t > ttl) return null;
+          return obj.v;
+        } catch (e) { return null; }
+      }
+      function writeCache(key, value) {
+        try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), v: value })); }
+        catch (e) {}
+      }
+
+      function fetchJson(url) {
+        return fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
+          .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+          });
+      }
+
+      var today = new Date();
+      var tomorrow = new Date(today.getTime() + 86400000);
+      var todayKey = 'gc:today:' + ymd(today);
+      var totalKey = 'gc:total';
+
+      // 오늘: 작은 응답 (~800B)
+      var cachedToday = readCache(todayKey, TTL_TODAY);
+      if (cachedToday != null) {
+        todayEl.textContent = fmt(cachedToday);
+      } else {
+        fetchJson(API + '?start=' + ymd(today) + '&end=' + ymd(tomorrow))
+          .then(function (data) {
+            var stat = (data.stats || []).find(function (s) { return s.day === ymd(today); });
+            var n = stat ? stat.daily : 0;
+            todayEl.textContent = fmt(n);
+            writeCache(todayKey, n);
+          })
+          .catch(function () { todayEl.textContent = '-'; });
+      }
+
+      // 전체: 큰 응답 (~800KB) — 6시간 캐시로 거의 1회만 실행
+      var cachedTotal = readCache(totalKey, TTL_TOTAL);
+      if (cachedTotal != null) {
+        totalEl.textContent = fmt(cachedTotal);
+      } else {
+        fetchJson(API + '?start=2020-01-01&end=' + ymd(today))
+          .then(function (data) {
+            var n = data.total || 0;
+            totalEl.textContent = fmt(n);
+            writeCache(totalKey, n);
+          })
+          .catch(function () { totalEl.textContent = '-'; });
+      }
+    })();
+  </script>
+  <style>
+    #visitor-counter {
+      font-size: 0.78rem;
+      color: var(--sidebar-muted-color, #999);
+      border-top: 1px solid rgba(128, 128, 128, 0.18);
+      padding-top: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+    #visitor-counter .vc-row { line-height: 1.6; }
+    #visitor-counter .vc-label { opacity: 0.75; }
+    #visitor-counter .vc-value { font-variant-numeric: tabular-nums; }
+  </style>
+{% endif %}
