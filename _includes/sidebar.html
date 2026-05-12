@@ -128,11 +128,16 @@
 {% if site.data.goatcounter.site_code and site.data.goatcounter.read_token %}
   <script>
     (function () {
+      console.log('[gc-counter] script start');
       var el = document.getElementById('visitor-counter');
-      if (!el) return;
+      if (!el) {
+        console.warn('[gc-counter] #visitor-counter element not found');
+        return;
+      }
 
       var site = el.dataset.gcSite;
       var token = el.dataset.gcToken;
+      console.log('[gc-counter] init', { site: site, hasToken: !!token });
       var todayEl = el.querySelector('[data-vc-today]');
       var totalEl = el.querySelector('[data-vc-total]');
 
@@ -161,10 +166,10 @@
       }
 
       function fetchJson(url) {
-        console.debug('[gc-counter] fetching', url);
+        console.log('[gc-counter] fetching', url);
         return fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
           .then(function (r) {
-            console.debug('[gc-counter] response', r.status, url);
+            console.log('[gc-counter] response', r.status, url);
             if (!r.ok) throw new Error('HTTP ' + r.status);
             return r.json();
           });
