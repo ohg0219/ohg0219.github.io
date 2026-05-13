@@ -15,10 +15,13 @@ description: 현재 Claude Code 대화를 블로그 글 작성 대상으로 마�
 
 **topic 길이 가이드**: title 로 그대로 들어가므로 **핵심 키워드만, 20자 이내**가 좋다. 부연 설명·증상은 분리해서 `subtitle` 로 잡는다 (다음 단계).
 
+**subtitle 은 항상 함께 잡는다 (필수)**. /blog-draft 가 이걸 `description:` 필드로 매핑하고, description 은 모든 글에 채워져야 한다.
+
 - 사용자가 한 문장으로 길게 던지면 (예: "Excel 자동 생성 파일이 매번 자체 복구를 띄운 이유 — POI freeze pane 과 활성 셀의 함정") 두 토막으로 쪼개서 확인한다:
   - `topic`: `POI freeze pane 과 활성 셀의 함정`
   - `subtitle`: `Excel 자동 생성 파일이 매번 자체 복구를 띄운 이유`
 - 쪼개기 애매하면 사용자에게 한 번만 더 확인. ("이 두 토막으로 나눌까요? — topic: X / subtitle: Y")
+- 사용자가 topic 만 짧게 던지고 끝나면 subtitle 을 한 줄 요약으로 직접 제안하고 확인받는다. ("부제는 'XYZ' 정도로 잡을까요?") 확정 안 되면 빈 값으로 두지 말고 `subtitle: <topic 보조 설명>` 형태로라도 채워 놓는다 — 이후 /blog-draft 단계에서 본문 요약으로 다듬을 수 있다.
 
 ## 2. slug 생성
 
@@ -42,7 +45,7 @@ description: 현재 Claude Code 대화를 블로그 글 작성 대상으로 마�
 ```markdown
 ---
 topic: <주제>                      # 그대로 title 로 들어가므로 짧게 (20자 내외)
-subtitle: <부제>                   # 선택. 있으면 /blog-draft 가 description: 필드로 매핑
+subtitle: <부제>                   # 필수. /blog-draft 가 description: 필드로 매핑 (비울 수 없음)
 slug: <slug>
 started_at: <YYYY-MM-DD HH:MM>
 categories: [<cat1>, <cat2>]
