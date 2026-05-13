@@ -1,5 +1,6 @@
 ---
-title: "첫 클러스터와 Pod — 가장 작은 단위부터 — 시리즈 2편"
+title: "첫 클러스터와 Pod [2편]"
+description: "가장 작은 단위부터"
 date: 2026-05-12 19:07:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, pod, kubectl, minikube]

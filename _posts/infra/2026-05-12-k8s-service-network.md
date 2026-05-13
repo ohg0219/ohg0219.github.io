@@ -1,5 +1,6 @@
 ---
-title: "Service 와 네트워크 — Pod IP 가 자꾸 바뀌는데 어떻게 연결하나 — 시리즈 4편"
+title: "Service 와 네트워크 [4편]"
+description: "Pod IP 가 자꾸 바뀌는데 어떻게 연결하나"
 date: 2026-05-12 21:29:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, service, clusterip, nodeport, loadbalancer, dns]

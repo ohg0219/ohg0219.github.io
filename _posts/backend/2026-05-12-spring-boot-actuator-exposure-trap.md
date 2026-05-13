@@ -1,5 +1,6 @@
 ---
-title: "Spring Boot Actuator 헬스체크 경로가 root 로 떨어진 이유"
+title: "Spring Boot Actuator 헬스체크 함정"
+description: "경로가 root 로 떨어진 이유"
 date: 2026-05-12 00:00:00 +0900
 categories: [backend]
 tags: [spring-boot, actuator, health-check, configuration, devops]

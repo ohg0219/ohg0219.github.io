@@ -1,5 +1,6 @@
 ---
-title: "Ingress 와 패키징(Helm 맛보기) — 매니페스트가 늘어나면 — 시리즈 7편"
+title: "Ingress 와 Helm 맛보기 [7편]"
+description: "매니페스트가 늘어나면"
 date: 2026-05-12 21:40:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, ingress, helm, chart, nginx-ingress]

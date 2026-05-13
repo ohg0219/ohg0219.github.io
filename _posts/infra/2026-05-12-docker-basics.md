@@ -1,5 +1,5 @@
 ---
-title: "Docker 기초 — 시리즈 1편"
+title: "Docker 기초 [1편]"
 date: 2026-05-12 16:14:48 +0900
 categories: [infra]
 tags: [docker, container, getting-started, basics]

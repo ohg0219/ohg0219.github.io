@@ -1,5 +1,6 @@
 ---
-title: "ConfigMap 과 Secret — 설정과 비밀을 이미지에서 분리 — 시리즈 5편"
+title: "ConfigMap 과 Secret [5편]"
+description: "설정과 비밀을 이미지에서 분리"
 date: 2026-05-12 21:33:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, configmap, secret, env, volume-mount]

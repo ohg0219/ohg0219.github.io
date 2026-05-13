@@ -1,5 +1,6 @@
 ---
-title: "Deployment 와 ReplicaSet — Pod 만으로 부족한 이유 — 시리즈 3편"
+title: "Deployment 와 ReplicaSet [3편]"
+description: "Pod 만으로 부족한 이유"
 date: 2026-05-12 19:16:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, deployment, replicaset, rolling-update]

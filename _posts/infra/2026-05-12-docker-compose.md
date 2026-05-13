@@ -1,5 +1,6 @@
 ---
-title: "Docker Compose — 여러 컨테이너를 한 파일로 — 시리즈 3편"
+title: "Docker Compose [3편]"
+description: "여러 컨테이너를 한 파일로"
 date: 2026-05-12 16:45:00 +0900
 categories: [infra]
 tags: [docker, docker-compose, multi-container, orchestration, yaml]

@@ -1,5 +1,6 @@
 ---
-title: "AI 에게 절차를 강제하기 — Claude Code PDCA 스킬을 들여다본 기록"
+title: "Claude Code PDCA 스킬"
+description: "AI 에게 절차를 강제하기"
 date: 2026-05-12 00:00:00 +0900
 categories: [tooling]
 tags: [claude-code, pdca, ai-workflow, skill, automation]

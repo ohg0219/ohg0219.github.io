@@ -1,5 +1,6 @@
 ---
-title: "Docker 네트워크 — bridge, host, custom — 시리즈 2편"
+title: "Docker 네트워크 [2편]"
+description: "bridge, host, custom"
 date: 2026-05-12 16:20:00 +0900
 categories: [infra]
 tags: [docker, network, bridge, port-mapping, container-dns]

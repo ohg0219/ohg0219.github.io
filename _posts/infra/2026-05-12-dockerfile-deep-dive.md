@@ -1,5 +1,6 @@
 ---
-title: "Dockerfile 심화 — 캐싱, 멀티스테이지, 슬리밍 — 시리즈 5편"
+title: "Dockerfile 심화 [5편]"
+description: "캐싱, 멀티스테이지, 슬리밍"
 date: 2026-05-12 17:45:00 +0900
 categories: [infra]
 tags: [docker, dockerfile, multi-stage, layer-cache, image-optimization]

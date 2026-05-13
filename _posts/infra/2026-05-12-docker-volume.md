@@ -1,5 +1,6 @@
 ---
-title: "Docker 볼륨 — 지워도 되는 것 vs 살아남아야 하는 것 — 시리즈 4편"
+title: "Docker 볼륨 [4편]"
+description: "지워도 되는 것 vs 살아남아야 하는 것"
 date: 2026-05-12 17:15:00 +0900
 categories: [infra]
 tags: [docker, volume, bind-mount, named-volume, persistence]

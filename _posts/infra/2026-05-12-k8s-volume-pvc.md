@@ -1,5 +1,6 @@
 ---
-title: "Volume 과 PVC — 컨테이너가 죽어도 살아남아야 하는 데이터 — 시리즈 6편"
+title: "Volume 과 PVC [6편]"
+description: "컨테이너가 죽어도 살아남아야 하는 데이터"
 date: 2026-05-12 21:38:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, volume, persistentvolume, pvc, storageclass]

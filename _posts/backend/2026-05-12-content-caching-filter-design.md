@@ -1,5 +1,6 @@
 ---
-title: "API 호출의 request/response 본문을 그대로 남기는 ContentCachingFilter 설계와 디버깅 활용기"
+title: "ContentCachingFilter 설계"
+description: "request/response 본문을 한 곳에서 일관되게 로깅하기"
 date: 2026-05-12 00:00:00 +0900
 categories: [backend]
 tags: [spring-boot, servlet-filter, request-logging, debugging, http]
