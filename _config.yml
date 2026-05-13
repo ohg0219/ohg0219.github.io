@@ -39,6 +39,11 @@ pwa:
   cache:
     enabled: false
 
+# ---------------- Webmaster verifications ----------------
+# 검색엔진 사이트 소유 확인용 meta tag. Chirpy 가 자동으로 <head> 에 박음.
+webmaster_verifications:
+  google: AqYRaIJzIYeqMLoyLkpBwpNZoHtMVRfkQscMVsFVkbk
+
 # ---------------- Analytics (GoatCounter) ----------------
 # 트래킹 스크립트 삽입 — 모든 페이지에서 https://ohg0219.goatcounter.com 으로 pageview 전송.
 analytics:
