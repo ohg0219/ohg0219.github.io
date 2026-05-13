@@ -1,5 +1,6 @@
 ---
 title: "MySQL only_full_group_by 에러 해결기"
+description: "MariaDB 에서 잘 돌던 쿼리가 MySQL 8 에서 터진 이유"
 date: 2026-05-12 16:30:00 +0900
 categories: [backend]
 tags: [mysql, sql, group-by, only-full-group-by, sql-mode, mybatis]

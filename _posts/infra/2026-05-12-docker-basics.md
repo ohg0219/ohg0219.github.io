@@ -1,5 +1,6 @@
 ---
 title: "Docker 기초 [1편]"
+description: "처음 만질 때 잡아야 할 다섯 가지"
 date: 2026-05-12 16:14:48 +0900
 categories: [infra]
 tags: [docker, container, getting-started, basics]
