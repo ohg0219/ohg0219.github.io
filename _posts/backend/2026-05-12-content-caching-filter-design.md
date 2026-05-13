@@ -4,6 +4,9 @@ description: "request/response 본문을 한 곳에서 일관되게 로깅하기
 date: 2026-05-12 00:00:00 +0900
 categories: [backend]
 tags: [spring-boot, servlet-filter, request-logging, debugging, http]
+image:
+  path: /assets/img/posts/content-caching-filter-design/cover.jpg
+  alt: HTTP 요청과 응답 본문이 캐시 버퍼를 지나 로그로 남는 구조를 표현한 기술 커버 이미지
 ---
 
 > "방금 그 요청 본문이 뭐였어요? 우리가 받은 게 맞아요?"

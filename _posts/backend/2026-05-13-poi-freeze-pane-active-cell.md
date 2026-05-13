@@ -4,6 +4,9 @@ description: "Excel 자동 생성 파일이 매번 자체 복구를 띄운 이�
 date: 2026-05-13 09:45:00 +0900
 categories: [backend]
 tags: [apache-poi, excel, freeze-pane, xlsx, java]
+image:
+  path: /assets/img/posts/poi-freeze-pane-active-cell/cover.jpg
+  alt: Excel freeze pane 과 활성 셀 위치를 시트 구조로 표현한 기술 커버 이미지
 ---
 
 > **Excel 이 자기 자신을 "복구" 했습니다.** 코드로 만들어 내려준 xlsx 인데, 사용자가 열면 "에러가 있어 파일을 복구했다"는 다이얼로그가 뜨고, 복구가 끝나면 화면은 마지막 컬럼 쪽으로 잘 가 있는데 셀 커서는 엉뚱한 `C1` 에 박혀 있었습니다.

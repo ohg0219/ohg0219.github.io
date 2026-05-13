@@ -4,6 +4,9 @@ description: "MariaDB 에서 잘 돌던 쿼리가 MySQL 8 에서 터진 이유"
 date: 2026-05-12 16:30:00 +0900
 categories: [backend]
 tags: [mysql, sql, group-by, only-full-group-by, sql-mode, mybatis]
+image:
+  path: /assets/img/posts/mysql-only-full-group-by-fix/cover.jpg
+  alt: MySQL GROUP BY 검증과 데이터베이스 마이그레이션 흐름을 표현한 기술 커버 이미지
 ---
 
 > **MariaDB 에선 잘 돌아가던 쿼리가, MySQL 8 로 옮긴 순간 터졌습니다.**

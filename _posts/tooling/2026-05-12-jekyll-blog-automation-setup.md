@@ -3,6 +3,9 @@ title: "Jekyll 블로그 자동화 셋업"
 date: 2026-05-12 12:58:00 +0900
 categories: [tooling]
 tags: [jekyll, blog, automation, claude-code, github-pages]
+image:
+  path: /assets/img/posts/jekyll-blog-automation-setup/cover.jpg
+  alt: 마크다운 글이 Jekyll 정적 사이트로 배포되는 자동화 흐름을 표현한 기술 커버 이미지
 mermaid: true
 redirect_from:
   - /2026/05/12/jekyll-blog-automation-setup/

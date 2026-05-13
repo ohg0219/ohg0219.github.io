@@ -4,6 +4,9 @@ description: "경로가 root 로 떨어진 이유"
 date: 2026-05-12 00:00:00 +0900
 categories: [backend]
 tags: [spring-boot, actuator, health-check, configuration, devops]
+image:
+  path: /assets/img/posts/spring-boot-actuator-exposure-trap/cover.jpg
+  alt: 헬스체크 엔드포인트 노출 설정과 경로 매핑 함정을 표현한 기술 커버 이미지
 ---
 
 **404 도 아니고, 500 도 아니고 — 루트가 떴습니다.** 헬스체크 URL 을 호출했는데 Spring Boot 의 기본 환영 페이지가 떨어진 그날의 디버깅 기록입니다. 범인은 `exclude: "*"` 한 줄이었지만, 거기까지 가는 길에 두 번의 오진이 있었습니다.

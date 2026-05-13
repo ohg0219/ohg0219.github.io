@@ -4,6 +4,9 @@ description: "AI 에게 절차를 강제하기"
 date: 2026-05-12 00:00:00 +0900
 categories: [tooling]
 tags: [claude-code, pdca, ai-workflow, skill, automation]
+image:
+  path: /assets/img/posts/claude-code-pdca-skill/cover.jpg
+  alt: PDCA 단계와 AI 워크플로우 상태 추적 루프를 표현한 기술 커버 이미지
 mermaid: true
 ---
 
