@@ -147,9 +147,8 @@ tags: [<tags>]
 
 다음 단계:
   1) 에디터에서 열어 검토·수정 (특히 도입 1~2 단락의 후킹이 충분히 강한지)
-  2) /blog-cover 로 커버 이미지 생성 (codex 가 본문 분석해 960x540 JPEG 생성)
-  3) 발행:
-     git add _posts/<category>/<YYYY-MM-DD>-<slug>.md assets/img/posts/<slug>/cover.jpg
+  2) 발행:
+     git add _posts/<category>/<YYYY-MM-DD>-<slug>.md
      git commit -m "post: <topic>"
      git push
 
