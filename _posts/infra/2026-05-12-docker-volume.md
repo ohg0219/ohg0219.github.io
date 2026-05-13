@@ -5,7 +5,7 @@ date: 2026-05-12 17:15:00 +0900
 categories: [infra]
 tags: [docker, volume, bind-mount, named-volume, persistence]
 image:
-  path: /assets/img/posts/docker-volume/cover.png
+  path: /assets/img/posts/docker-volume/cover.jpg
   alt: Docker 컨테이너가 교체되어도 볼륨 데이터가 유지되는 구조를 표현한 기술 커버 이미지
 mermaid: true
 series:

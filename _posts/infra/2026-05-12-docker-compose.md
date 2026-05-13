@@ -5,7 +5,7 @@ date: 2026-05-12 16:45:00 +0900
 categories: [infra]
 tags: [docker, docker-compose, multi-container, orchestration, yaml]
 image:
-  path: /assets/img/posts/docker-compose/cover.png
+  path: /assets/img/posts/docker-compose/cover.jpg
   alt: Docker Compose 파일이 여러 서비스와 네트워크와 볼륨을 구성하는 모습을 표현한 기술 커버 이미지
 mermaid: true
 series:

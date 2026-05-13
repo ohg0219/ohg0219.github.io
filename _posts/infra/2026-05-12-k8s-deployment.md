@@ -5,7 +5,7 @@ date: 2026-05-12 19:16:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, deployment, replicaset, rolling-update]
 image:
-  path: /assets/img/posts/k8s-deployment/cover.png
+  path: /assets/img/posts/k8s-deployment/cover.jpg
   alt: Kubernetes Deployment 가 ReplicaSet 을 통해 여러 Pod 를 유지하고 교체하는 흐름을 표현한 기술 커버 이미지
 mermaid: true
 series:

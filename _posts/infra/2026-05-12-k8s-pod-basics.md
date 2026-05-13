@@ -5,7 +5,7 @@ date: 2026-05-12 19:07:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, pod, kubectl, minikube]
 image:
-  path: /assets/img/posts/k8s-pod-basics/cover.png
+  path: /assets/img/posts/k8s-pod-basics/cover.jpg
   alt: Kubernetes 클러스터 안에서 Pod 가 가장 작은 배포 단위로 실행되는 모습을 표현한 기술 커버 이미지
 mermaid: true
 series:

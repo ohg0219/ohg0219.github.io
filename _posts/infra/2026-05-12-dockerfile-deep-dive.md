@@ -5,7 +5,7 @@ date: 2026-05-12 17:45:00 +0900
 categories: [infra]
 tags: [docker, dockerfile, multi-stage, layer-cache, image-optimization]
 image:
-  path: /assets/img/posts/dockerfile-deep-dive/cover.png
+  path: /assets/img/posts/dockerfile-deep-dive/cover.jpg
   alt: Dockerfile 명령이 이미지 레이어와 멀티스테이지 빌드로 이어지는 흐름을 표현한 기술 커버 이미지
 mermaid: true
 series:

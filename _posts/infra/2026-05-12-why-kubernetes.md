@@ -5,7 +5,7 @@ date: 2026-05-12 19:00:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, orchestration, container, docker]
 image:
-  path: /assets/img/posts/why-kubernetes/cover.png
+  path: /assets/img/posts/why-kubernetes/cover.jpg
   alt: 수동 Docker 컨테이너 운영이 Kubernetes 클러스터 오케스트레이션으로 정리되는 흐름을 표현한 기술 커버 이미지
 mermaid: true
 series:

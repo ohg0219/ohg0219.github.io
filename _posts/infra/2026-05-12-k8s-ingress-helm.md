@@ -5,7 +5,7 @@ date: 2026-05-12 21:40:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, ingress, helm, chart, nginx-ingress]
 image:
-  path: /assets/img/posts/k8s-ingress-helm/cover.png
+  path: /assets/img/posts/k8s-ingress-helm/cover.jpg
   alt: Kubernetes Ingress 가 외부 트래픽을 라우팅하고 Helm 이 매니페스트를 패키징하는 흐름을 표현한 기술 커버 이미지
 mermaid: true
 series:

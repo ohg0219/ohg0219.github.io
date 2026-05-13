@@ -4,7 +4,7 @@ date: 2026-05-12 16:14:48 +0900
 categories: [infra]
 tags: [docker, container, getting-started, basics]
 image:
-  path: /assets/img/posts/docker-basics/cover.png
+  path: /assets/img/posts/docker-basics/cover.jpg
   alt: Docker 이미지와 컨테이너가 호스트 위에서 실행되는 구조를 표현한 기술 커버 이미지
 mermaid: true
 series:

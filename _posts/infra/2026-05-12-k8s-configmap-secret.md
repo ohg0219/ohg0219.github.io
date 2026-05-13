@@ -5,7 +5,7 @@ date: 2026-05-12 21:33:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, configmap, secret, env, volume-mount]
 image:
-  path: /assets/img/posts/k8s-configmap-secret/cover.png
+  path: /assets/img/posts/k8s-configmap-secret/cover.jpg
   alt: Kubernetes Pod 에 ConfigMap 과 Secret 이 설정과 비밀 값으로 주입되는 모습을 표현한 기술 커버 이미지
 mermaid: true
 series:

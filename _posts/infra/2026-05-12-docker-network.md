@@ -5,7 +5,7 @@ date: 2026-05-12 16:20:00 +0900
 categories: [infra]
 tags: [docker, network, bridge, port-mapping, container-dns]
 image:
-  path: /assets/img/posts/docker-network/cover.png
+  path: /assets/img/posts/docker-network/cover.jpg
   alt: Docker 컨테이너들이 브리지 네트워크와 포트 매핑으로 연결되는 구조를 표현한 기술 커버 이미지
 mermaid: true
 series:

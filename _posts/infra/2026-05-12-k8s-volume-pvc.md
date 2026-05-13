@@ -5,7 +5,7 @@ date: 2026-05-12 21:38:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, volume, persistentvolume, pvc, storageclass]
 image:
-  path: /assets/img/posts/k8s-volume-pvc/cover.png
+  path: /assets/img/posts/k8s-volume-pvc/cover.jpg
   alt: Kubernetes Pod 가 PVC 를 통해 PersistentVolume 과 StorageClass 를 사용하는 구조를 표현한 기술 커버 이미지
 mermaid: true
 series:

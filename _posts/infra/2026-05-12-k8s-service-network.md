@@ -5,7 +5,7 @@ date: 2026-05-12 21:29:00 +0900
 categories: [infra]
 tags: [kubernetes, k8s, service, clusterip, nodeport, loadbalancer, dns]
 image:
-  path: /assets/img/posts/k8s-service-network/cover.png
+  path: /assets/img/posts/k8s-service-network/cover.jpg
   alt: Kubernetes Service 가 변하는 Pod IP 앞에서 고정된 네트워크 진입점을 제공하는 구조를 표현한 기술 커버 이미지
 mermaid: true
 series:
