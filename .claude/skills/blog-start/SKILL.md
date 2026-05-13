@@ -13,6 +13,13 @@ description: 현재 Claude Code 대화를 블로그 글 작성 대상으로 마�
 - 없으면 사용자에게 **단 한 번** 묻는다: "어떤 주제로 정리할까요? (예: 'JPA N+1 해결기', 'Spring Boot Redis 캐시 설정')"
 - 사용자가 답하면 그 답을 주제로 사용한다.
 
+**topic 길이 가이드**: title 로 그대로 들어가므로 **핵심 키워드만, 20자 이내**가 좋다. 부연 설명·증상은 분리해서 `subtitle` 로 잡는다 (다음 단계).
+
+- 사용자가 한 문장으로 길게 던지면 (예: "Excel 자동 생성 파일이 매번 자체 복구를 띄운 이유 — POI freeze pane 과 활성 셀의 함정") 두 토막으로 쪼개서 확인한다:
+  - `topic`: `POI freeze pane 과 활성 셀의 함정`
+  - `subtitle`: `Excel 자동 생성 파일이 매번 자체 복구를 띄운 이유`
+- 쪼개기 애매하면 사용자에게 한 번만 더 확인. ("이 두 토막으로 나눌까요? — topic: X / subtitle: Y")
+
 ## 2. slug 생성
 
 주제에서 URL 친화적인 slug 를 만든다.
@@ -34,7 +41,8 @@ description: 현재 Claude Code 대화를 블로그 글 작성 대상으로 마�
 
 ```markdown
 ---
-topic: <주제>
+topic: <주제>                      # 그대로 title 로 들어가므로 짧게 (20자 내외)
+subtitle: <부제>                   # 선택. 있으면 /blog-draft 가 description: 필드로 매핑
 slug: <slug>
 started_at: <YYYY-MM-DD HH:MM>
 categories: [<cat1>, <cat2>]
@@ -42,7 +50,7 @@ tags: [<tag1>, <tag2>, <tag3>]
 # 시리즈 글이면 다음 블록을 추가한다. 단편이면 생략.
 # series:
 #   name: <series-slug>    # _data/series.yml 의 키 (예: docker)
-#   part: <N>              # 1, 2, 3...
+#   part: <N>              # 1, 2, 3...   /blog-draft 가 title 끝에 [N편] 으로 자동 부착
 ---
 
 # 대화 메모
@@ -64,10 +72,11 @@ tags: [<tag1>, <tag2>, <tag3>]
 
 ## 6. 확인 메시지
 
-작성 후 사용자에게 한 줄로 요약한다:
+작성 후 사용자에게 한 줄로 요약한다 (subtitle 이 잡힌 경우만 두 번째 줄 추가):
 
 ```
 🔖 블로깅 모드 시작 — 주제: <topic> · slug: <slug>
+   부제: <subtitle>              # subtitle 이 있을 때만
    카테고리: <categories> · 태그: <tags>
    이제 자유롭게 대화하시면 됩니다. 마무리할 때 /blog-draft 실행.
 ```

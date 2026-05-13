@@ -45,7 +45,8 @@ description: 현재 Claude Code 대화 컨텍스트와 `.claude/blog-session.md`
 
 ```yaml
 ---
-title: "<topic>"
+title: "<짧은 제목>"
+description: "<부제 또는 한 줄 요약>"   # 선택, 부제가 있는 경우만
 date: <YYYY-MM-DD HH:MM:SS +0900>
 categories: [<categories>]
 tags: [<tags>]
@@ -59,6 +60,31 @@ tags: [<tags>]
 ```
 
 `layout: post` 는 적지 않는다 — 블로그 `_config.yml` 의 defaults 가 자동 적용한다.
+
+### title / description 규칙 (중요)
+
+목록·카드·검색·시리즈 nav 어디서나 한눈에 읽히는 짧은 title 을 만든다. 길어지면 description 으로 분리한다.
+
+- **title 은 핵심 키워드만**. 권장 20자 이내, 단독 글도 가급적 25자 이하. **"주제 — 부제 — 시리즈 N편" 같은 이중 em-dash 구조 금지**.
+- **부제·요약은 `description:` 필드로 분리**. Chirpy 가 카드 미리보기와 `<meta name="description">` 에 자동 사용한다. (post 본문 상단에는 표시되지 않음 — 본문 도입부가 그 역할을 한다.)
+- **시리즈 글의 시리즈 표기는 `[N편]` 접미사로 통일**. `series.part` 번호와 일치시킨다. `— 시리즈 N편` 같은 풀어쓴 형태는 쓰지 않는다 (series-nav.html 의 `<ol>` 이 이미 순서·현재 글을 시각화함).
+- description 이 없는 단편이면 줄을 통째로 생략한다. 빈 값 `description: ""` 으로 두지 말 것.
+
+**적용 예시**:
+
+| 패턴 | title | description |
+|---|---|---|
+| 시리즈, 부제 없음 | `Docker 기초 [1편]` | *(생략)* |
+| 시리즈, 부제 있음 | `Docker Compose [3편]` | `여러 컨테이너를 한 파일로` |
+| 시리즈, 긴 부제 | `Service 와 네트워크 [4편]` | `Pod IP 가 자꾸 바뀌는데 어떻게 연결하나` |
+| 단독, 부제 있음 | `Spring Boot Actuator 헬스체크 함정` | `경로가 root 로 떨어진 이유` |
+| 단독, 키워드 위주 | `POI freeze pane 과 활성 셀의 함정` | `Excel 자동 생성 파일이 매번 자체 복구를 띄운 이유` |
+
+**`.claude/blog-session.md` 매핑**:
+
+- `topic` → `title` (필요시 더 짧게 다듬어도 됨)
+- `subtitle` (있으면) → `description`
+- `series.part` 가 있는 경우 → title 끝에 ` [Npart편]` 자동 부착
 
 **시리즈 글이면 본문 맨 위에 다음 한 줄을 추가한다** (front matter 바로 다음, 리드 단락보다 위):
 
