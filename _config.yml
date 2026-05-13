@@ -49,20 +49,13 @@ analytics:
 pageviews:
   provider: goatcounter
 
-# ---------------- Comments (giscus) ----------------
-# giscus.app 발급값 기준. repo Discussions 활성 + giscus GitHub App 설치가 전제.
+# ---------------- Comments (Disqus) ----------------
+# Disqus 대시보드에서 발급받은 shortname 사용. GitHub 로그인 의존 제거.
+# 게스트 댓글 허용 여부는 Disqus Admin → Settings → General → Guest Commenting 에서 토글.
 comments:
-  provider: giscus
-  giscus:
-    repo: ohg0219/ohg0219.github.io
-    repo_id: "R_kgDOSa82MQ"
-    category: Announcements
-    category_id: "DIC_kwDOSa82Mc4C811q"
-    mapping: pathname
-    strict: "0"
-    input_position: bottom
-    lang: ko
-    reactions_enabled: "1"
+  provider: disqus
+  disqus:
+    shortname: ohg0219
 
 # ---------------- Markdown / Highlighter ----------------
 markdown: kramdown
