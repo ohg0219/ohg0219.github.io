@@ -4,6 +4,9 @@ description: "비회원 UX 와 무료 플랜 광고에 발이 묶였다"
 date: 2026-05-13 14:48:29 +0900
 categories: [tooling]
 tags: [giscus, disqus, comments, github-discussions, jekyll]
+image:
+  path: /assets/img/posts/back-to-giscus/cover.jpg
+  alt: Disqus 댓글 시스템에서 giscus 와 GitHub Discussions 로 되돌아온 흐름을 표현한 기술 커버 이미지
 ---
 
 **댓글 시스템을 한 번 갈아끼웠다가 같은 날 되돌렸습니다.** 더 보편적이고 로그인 없이 쓸 수 있다는 이유로 Disqus 로 옮겼는데, 비회원 UX 가 생각만큼 매끄럽지 않았고 무료 플랜엔 광고가 끼었습니다. 같은 날 저녁 두 줄짜리 revert 로 giscus 로 돌아왔습니다.

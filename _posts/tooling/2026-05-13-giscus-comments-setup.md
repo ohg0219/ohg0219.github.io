@@ -4,6 +4,9 @@ description: "GitHub Discussions 를 댓글 저장소로"
 date: 2026-05-13 14:37:08 +0900
 categories: [tooling]
 tags: [giscus, comments, github-discussions, jekyll, chirpy]
+image:
+  path: /assets/img/posts/giscus-comments-setup/cover.jpg
+  alt: giscus 댓글 위젯과 GitHub Discussions 저장소 연결을 표현한 기술 커버 이미지
 ---
 
 댓글 받을 자리를 켜고 싶었습니다. 외부 SaaS 위젯에 의존하지 않고, 저장소를 내가 통제할 수 있는 자리에 두고 싶었고요. **이 블로그는 giscus 로 그 두 가지를 한 번에 만족시켰습니다** — 댓글이 GitHub Discussions 에 그대로 저장되고, Chirpy 의 `_config.yml` 한 블록이면 댓글 자리가 자동으로 켜집니다.
