@@ -44,7 +44,7 @@ ghi789...      none      null      local
 | **host** | 컨테이너가 호스트의 네트워크 스택을 그대로 사용. 격리 없음. port mapping 불필요 | 성능이 critical 하거나 호스트 IP 가 필요한 시스템 도구. Linux 에서만 정상 동작 (macOS·Windows 는 VM 안 호스트라 의도와 다르게 동작) |
 | **none** | 네트워크 인터페이스 자체가 없음 | 네트워크가 필요 없는 일회성 작업, 격리 컨테이너 |
 
-가장 자주 쓰는 건 단연 **bridge** 입니다. 99% 의 경우 이걸로 충분합니다. 다만 **기본 bridge 와 사용자가 만든 custom bridge 는 다르다** 는 점이 곧 핵심으로 나옵니다.
+가장 자주 쓰는 건 단연 **bridge** 입니다. 대부분의 경우 이걸로 충분합니다. 다만 **기본 bridge 와 사용자가 만든 custom bridge 는 다르다** 는 점이 곧 핵심으로 나옵니다.
 
 ## port mapping 이 실제로 하는 일
 
@@ -70,7 +70,7 @@ flowchart LR
 
 ## 컨테이너 이름을 DNS 처럼 쓰기
 
-기본 `bridge` 네트워크에는 **DNS 가 동작하지 않습니다.** 컨테이너 이름으로 `ping nginx` 가 안 됩니다. IP 로만 접근 가능한데, 컨테이너 IP 는 재시작 때마다 바뀌므로 거의 못 씁니다.
+기본 `bridge` 네트워크에는 **DNS 가 동작하지 않습니다.** 컨테이너 이름으로 `ping nginx` 가 안 됩니다. IP 로만 접근 가능한데, 컨테이너 IP 는 재시작 때마다 바뀌므로 실사용에는 적합하지 않습니다.
 
 해결책은 **custom network** 를 만드는 것입니다.
 
@@ -105,7 +105,7 @@ docker exec -it web curl http://db:5432
 
 **2. "두 컨테이너가 서로 통신이 안 된다"**
 
-99% 는 **같은 네트워크에 있지 않음**. `docker network inspect <network>` 로 어떤 컨테이너가 들어 있는지 확인합니다.
+대부분은 **같은 네트워크에 있지 않음**. `docker network inspect <network>` 로 어떤 컨테이너가 들어 있는지 확인합니다.
 
 ```powershell
 docker network inspect my-app

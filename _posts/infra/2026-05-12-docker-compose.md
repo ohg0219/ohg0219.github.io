@@ -64,13 +64,13 @@ volumes:
   pgdata:
 ```
 
-`docker compose up -d` 한 줄이면 끝입니다. 네트워크는 명시하지 않아도 Compose 가 프로젝트 단위로 custom network 를 자동으로 만들어 줍니다 — 2편에서 *"DNS 가 동작하려면 custom network"* 라고 했던 그 조건이 기본으로 들어옵니다. 그래서 `web` 안에서 `db` 라는 이름이 그대로 호스트네임이 됩니다.
+`docker compose up -d` 한 줄이면 됩니다. 네트워크는 명시하지 않아도 Compose 가 프로젝트 단위로 custom network 를 자동으로 만들어 줍니다 — 2편에서 *"DNS 가 동작하려면 custom network"* 라고 했던 그 조건이 기본으로 들어옵니다. 그래서 `web` 안에서 `db` 라는 이름이 그대로 호스트네임이 됩니다.
 
 > 파일 이름은 `docker-compose.yml` 도 되고 `compose.yml` 도 됩니다. 신식은 `compose.yml`.
 
 ## 최소 골격 — services, networks, volumes
 
-Compose 파일의 톱레벨은 사실상 세 개만 먼저 보면 됩니다.
+Compose 파일의 톱레벨은 우선 세 개만 먼저 보면 됩니다.
 
 ```yaml
 services:   # 띄울 컨테이너들. 각 키가 서비스 이름이자 DNS 이름이 된다
@@ -152,7 +152,7 @@ services:
         condition: service_healthy
 ```
 
-이제 `web` 은 `pg_isready` 가 OK 를 돌려준 뒤에야 시작합니다. healthcheck 가 없는 이미지면 직접 만들어 줘야 하고, 만약 healthcheck 로직을 짜기 애매하면 **애플리케이션 쪽에 재시도 로직** 을 두는 게 더 깔끔합니다. 어차피 운영에서 DB 가 재시작될 수도 있으니, 클라이언트의 retry 는 어떻게든 필요합니다.
+이제 `web` 은 `pg_isready` 가 OK 를 돌려준 뒤에야 시작합니다. healthcheck 가 없는 이미지면 직접 만들어 줘야 하고, 만약 healthcheck 로직을 짜기 애매하면 **애플리케이션 쪽에 재시도 로직** 을 두는 게 더 단순합니다. 운영에서 DB 가 재시작될 수도 있으니, 클라이언트의 retry 는 결국 필요합니다.
 
 ## 환경변수와 `.env`
 
@@ -177,7 +177,7 @@ services:
 
 더 많은 변수를 서비스에 한꺼번에 주입하고 싶다면 `env_file: .env.web` 처럼 파일 단위로 묶는 것도 됩니다.
 
-## 자주 쓰는 명령 한 줌
+## 자주 쓰는 명령
 
 ```powershell
 docker compose up -d           # 백그라운드로 전체 기동

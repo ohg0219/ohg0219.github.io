@@ -50,7 +50,7 @@ flowchart LR
 | **named volume** | Docker 가 관리하는 영역 (Linux 는 보통 `/var/lib/docker/volumes/...`) | `docker volume rm` 전까지 | Docker |
 | **tmpfs** | 메모리 (RAM) | 컨테이너 종료까지 | 커널 |
 
-세 가지가 다 같은 마운트 메커니즘을 쓰지만, **누가 그 데이터의 주인인가** 가 다릅니다. 그게 곧 "언제 무엇을 쓰는가" 의 기준이 됩니다.
+세 가지가 다 같은 마운트 메커니즘을 쓰지만, **누가 그 데이터의 주인인가** 가 다릅니다. 이 차이가 "언제 무엇을 쓰는가" 의 기준이 됩니다.
 
 ## 언제 무엇을 쓰는가
 
@@ -96,7 +96,7 @@ volumes:
 
 **피해야 할 때:**
 - 호스트에서 자주 편집해야 하는 파일. named volume 은 호스트에서 직접 들여다보기 번거롭습니다.
-- 개발 중인 소스 코드. 핫리로드 안 됩니다.
+- 개발 중인 소스 코드. 핫리로드가 되지 않습니다.
 
 ### tmpfs — 메모리만 쓰는 휘발 영역
 
@@ -131,9 +131,9 @@ FATAL: data directory has wrong ownership
 
 해결 방법은 두 갈래입니다.
 
-**a) named volume 으로 갈아탄다 (권장).** Docker 가 마운트 시점에 소유권을 맞춰 줍니다. 운영 DB 라면 이쪽이 정답입니다.
+**a) named volume 으로 갈아탄다 (권장).** Docker 가 마운트 시점에 소유권을 맞춰 줍니다. 운영 DB 라면 이쪽을 우선 선택하는 편이 안전합니다.
 
-**b) 굳이 bind 를 써야 한다면** 호스트 디렉토리의 UID 를 맞춥니다.
+**b) bind 를 써야 한다면** 호스트 디렉토리의 UID 를 맞춥니다.
 
 ```bash
 sudo chown -R 999:999 ./pgdata
@@ -143,7 +143,7 @@ sudo chown -R 999:999 ./pgdata
 
 > macOS · Windows 의 Docker Desktop 은 내부 VM 이 UID 매핑을 어느 정도 알아서 해 줘서 이 함정을 덜 만납니다. 운영(Linux) 으로 옮길 때 갑자기 터지는 게 보통입니다.
 
-## 볼륨 운영 명령 한 줌
+## 볼륨 운영 명령
 
 ```powershell
 docker volume ls                          # named volume 목록
@@ -159,7 +159,7 @@ docker compose down -v                    # 컨테이너 + named volume 모두 �
 
 ## 백업·복원 — 한 줄 트릭
 
-named volume 은 호스트 경로가 깔끔하지 않아서 백업이 어색해 보이지만, 임시 컨테이너를 한 번 띄우면 깔끔합니다.
+named volume 은 호스트 경로가 직관적이지 않아서 백업이 어색해 보이지만, 임시 컨테이너를 한 번 띄우면 단순하게 처리할 수 있습니다.
 
 ```powershell
 # 백업: pgdata 볼륨을 호스트의 현재 디렉토리에 tar 로 떨군다

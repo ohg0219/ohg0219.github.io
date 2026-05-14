@@ -32,7 +32,7 @@ kubectl get pods
 # → 아무것도 없다
 ```
 
-Pod 가 죽으면 끝입니다. 다시 띄우려면 사람이 직접 `kubectl run` 을 쳐야 합니다. 이건 `docker run` 과 다를 게 없습니다.
+Pod 가 죽으면 그대로 사라집니다. 다시 띄우려면 사람이 직접 `kubectl run` 을 쳐야 합니다. 이건 `docker run` 과 다를 게 없습니다.
 
 운영 환경에서 필요한 건 이런 겁니다:
 

@@ -83,7 +83,7 @@ selection.setSqref(Collections.singletonList(activeRef));
 - **`activePane` 지정**. freeze 가 위·왼쪽으로 걸려 있으니 데이터 영역은 `TOP_RIGHT` 이고, selection 도 같은 pane 에 매답니다.
 - **기존 selection 을 비우고 새로 추가**. POI 가 만들어둔 기본 selection 이 남아 있으면 이번에도 또 어긋납니다.
 
-이렇게 만든 파일은 Excel 이 복구를 띄우지 않고 그대로 열렸고, 화면은 마지막 데이터 컬럼 쪽으로, 커서는 의도한 셀에 정확히 박혀 있었습니다.
+이렇게 만든 파일은 Excel 이 복구를 띄우지 않고 그대로 열렸고, 화면은 마지막 데이터 컬럼 쪽으로, 커서는 의도한 셀에 정확히 위치했습니다.
 
 ## 가져갈 두 가지
 

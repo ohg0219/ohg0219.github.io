@@ -54,7 +54,7 @@ HAVING cnt = 0
 
 `main_name` 하나로 그룹을 묶었는데, 같은 `main_name` 안에 `parent_name` 값이 여러 개일 수도 있는 상황. MySQL 입장에서는 "그럼 어떤 값을 골라 보여줘야 하는데?" 라고 되묻는 것입니다. 그 대답이 바로 `only_full_group_by` 에러입니다.
 
-MariaDB 는 이걸 그냥 묵인하고 "아무거나 하나 골라서" 결과를 내줬습니다. MySQL 8 은 묵인하지 않습니다.
+MariaDB 는 이걸 허용하고 "아무거나 하나 골라서" 결과를 내줬습니다. MySQL 8 은 묵인하지 않습니다.
 
 ## 왜 MariaDB 는 OK, MySQL 은 NG 인가
 
@@ -82,7 +82,7 @@ sql_mode (SESSION = GLOBAL):
 
 여기서 가장 앞에 박혀 있는 `ONLY_FULL_GROUP_BY` — 이게 MySQL **5.7 이후 기본값**입니다. 표준 SQL 에 맞춰 "GROUP BY 에 없는 비집계 컬럼은 SELECT 에 쓰지 마라" 를 강제하는 모드죠.
 
-반면 MariaDB 는 이 옵션이 기본적으로 빠져 있어, 같은 쿼리가 그냥 통과합니다. MariaDB → MySQL 마이그레이션을 했다면 거의 무조건 한 번은 만나는 함정입니다.
+반면 MariaDB 는 이 옵션이 기본적으로 빠져 있어, 같은 쿼리가 통과합니다. MariaDB → MySQL 마이그레이션을 했다면 한 번쯤 만날 수 있는 함정입니다.
 
 ## 세 가지 길
 
@@ -119,7 +119,7 @@ SET GLOBAL sql_mode = REPLACE(@@GLOBAL.sql_mode, 'ONLY_FULL_GROUP_BY,', '');
 |------|------|------|
 | ① GROUP BY 보강 | 표준 준수, DB 이식성 ↑ | 동일 패턴 쿼리를 다 손봐야 함 |
 | ② `ANY_VALUE()` | 의도가 코드에 명시됨 | MySQL 전용 함수 |
-| ③ sql_mode 풀기 | 코드 무수정 | 다른 곳에서 또 모래 위에 집을 짓게 됨 |
+| ③ sql_mode 풀기 | 코드 무수정 | 같은 종류의 비결정적 쿼리를 계속 허용함 |
 
 ## 우리가 택한 길
 
@@ -150,7 +150,7 @@ SQLSyntaxErrorException 해결.
 
 ## 가져갈 한 줄
 
-MariaDB → MySQL 전환에서 가장 먼저 확인해야 할 것은 **`sql_mode`** 입니다. 특히 `ONLY_FULL_GROUP_BY`. 코드를 한 줄도 안 바꿨는데 쿼리가 터진다면, 99% 는 DB 엔진이 들고 있는 안전장치가 켜진 쪽이지 내 쿼리가 갑자기 망가진 게 아닙니다.
+MariaDB → MySQL 전환에서 가장 먼저 확인해야 할 것은 **`sql_mode`** 입니다. 특히 `ONLY_FULL_GROUP_BY`. 코드를 한 줄도 안 바꿨는데 쿼리가 터진다면, DB 엔진이 들고 있는 안전장치가 켜진 쪽일 가능성이 큽니다. 내 쿼리가 갑자기 망가진 게 아니라, 이전 엔진이 허용하던 모호함을 새 엔진이 거부한 것입니다.
 
 그리고 그 안전장치를 끄지 마세요. 안전장치는 이유가 있어서 켜져 있습니다.
 

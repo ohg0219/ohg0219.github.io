@@ -17,7 +17,7 @@ series:
 
 > **`docker build` 가 1분 30초 걸리던 게 8초로 줄었습니다. Dockerfile 의 줄 순서를 두 줄 바꿨을 뿐입니다.**
 
-이미지 빌드는 처음엔 그냥 *"되기만 하면 됨"* 인 영역으로 보입니다. 그러다 CI 가 매 PR 마다 1분 30초씩 잡아먹고, 같은 머신에 1.2 GB 이미지가 계속 쌓이고, 운영 이미지에 `apt` 캐시까지 함께 배포되고 있다는 걸 깨닫습니다. 이때부터 Dockerfile 은 *작품* 이 됩니다.
+이미지 빌드는 처음엔 *"되기만 하면 됨"* 인 영역으로 보입니다. 그러다 CI 가 매 PR 마다 1분 30초씩 잡아먹고, 같은 머신에 1.2 GB 이미지가 계속 쌓이고, 운영 이미지에 `apt` 캐시까지 함께 배포되고 있다는 걸 깨닫습니다. 이때부터 Dockerfile 은 관리 대상이 됩니다.
 
 시리즈의 마지막 5편입니다. 1편이 컨테이너, 2편이 네트워크, 3편이 Compose, 4편이 볼륨이었다면 이번 편은 **이미지 그 자체** — 어떻게 빌드되는지, 왜 캐시가 깨지는지, 어떻게 더 작고 안전하게 만드는지를 다룹니다.
 
@@ -169,7 +169,7 @@ CMD ["npm", "start"]
 
 `/root/.npm` 이 빌드 사이에 영속됩니다. `requirements.txt` 가 바뀌어 `pip install` 이 다시 돌더라도 휠은 재사용됩니다. Go 의 `/root/.cache/go-build`, Rust 의 `~/.cargo/registry` 도 같은 트릭이 통합니다.
 
-활성화는 `DOCKER_BUILDKIT=1 docker build ...` (구버전) 또는 그냥 최신 Docker 면 기본값. Dockerfile 첫 줄의 `# syntax=` 가 있어야 `--mount` 가 인식됩니다.
+활성화는 `DOCKER_BUILDKIT=1 docker build ...` (구버전) 또는 최신 Docker 의 기본값을 사용하면 됩니다. Dockerfile 첫 줄의 `# syntax=` 가 있어야 `--mount` 가 인식됩니다.
 
 ## 디버깅 — 어디가 부풀었는지 보는 법
 
