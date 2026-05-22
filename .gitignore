@@ -15,6 +15,12 @@ assets/js/dist/
 # 대화 단위 임시 메타데이터 (Skill 이 매번 새로 씀)
 .claude/blog-session.md
 
+# 크로스포스팅 환경값 (로컬 전용 — tistory 블로그 주소 등)
+.claude/crosspost.yml
+
+# Playwright MCP 산출물 (크로스포스팅 브라우저 자동화 시 생성)
+.playwright-mcp/
+
 # OS / 에디터
 .DS_Store
 Thumbs.db

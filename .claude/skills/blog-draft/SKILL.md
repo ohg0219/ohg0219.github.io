@@ -154,6 +154,9 @@ tags: [<tags>]
 
    배포 후 약 1~2분 뒤:
    https://ohg0219.github.io/posts/<slug>/
+
+  3) 배포가 끝나면 velog·tistory 에도 올릴 수 있습니다:
+     /blog-crosspost
 ```
 
 ## 6. 부수 동작
